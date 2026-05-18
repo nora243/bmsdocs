@@ -1,0 +1,156 @@
+---
+title: Phiếu nhập kho (PNK)
+---
+
+# Phiếu nhập kho (PNK)
+
+## Tổng quan
+
+Phiếu nhập kho dùng để ghi nhận hàng đã về kho.
+
+Bạn có thể dùng phiếu nhập cho các trường hợp:
+
+- nhập từ mua hàng
+- nhập do chuyển kho
+- nhập trả hàng
+- nhập điều chỉnh
+
+## Vị trí trong quy trình
+
+```
+Mua hàng / Chuyển kho / Trả hàng -> Phiếu nhập kho (PNK) -> Cập nhật tồn kho -> Hạch toán liên quan
+```
+
+## Truy cập chức năng
+
+Vào **ERP -> Kho -> Phiếu nhập** để mở danh sách phiếu nhập.
+
+Tại màn hình danh sách, người dùng có thể:
+
+- xem danh sách phiếu nhập theo phân trang
+- lọc theo mã phiếu, kho, nhà cung cấp, sản phẩm, trạng thái, người tạo, khoảng ngày
+- tạo phiếu mới
+- mở chi tiết phiếu
+- duyệt phiếu, hoàn thành phiếu, xóa phiếu
+
+## Danh sách và bộ lọc
+
+### Các cột chính trên danh sách
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã phiếu | Mã chứng từ PNK và thông tin ngày tạo/người tạo |
+| Mã PO | Mã đơn mua liên quan (nếu có) |
+| Nhà cung cấp/Kho nhập | Đối tác cung cấp và kho nhận |
+| Tổng tiền | Tổng giá trị trước thuế/chiết khấu |
+| VAT/CK | Thuế và chiết khấu |
+| Thành tiền | Giá trị cuối cùng của phiếu |
+| Trạng thái | Trạng thái xử lý hiện tại |
+| Thanh toán/Hóa đơn | Trạng thái thanh toán và số hóa đơn |
+
+### Bộ lọc đang hỗ trợ
+
+| Bộ lọc | Mô tả |
+|---|---|
+| Tìm kiếm mã phiếu | Tìm theo mã phiếu nhập |
+| Kho nhập | Lọc theo kho |
+| Nhà cung cấp | Lọc theo nhà cung cấp |
+| Sản phẩm | Lọc phiếu có sản phẩm tương ứng |
+| Trạng thái | Nháp, chờ duyệt, đã duyệt, hoàn thành, hủy |
+| Người tạo | Lọc theo user tạo phiếu |
+| Khoảng ngày | Lọc theo ngày tạo/ghi nhận |
+
+## Tạo phiếu nhập kho
+
+Nhấn **Tạo phiếu nhập** trong màn hình danh sách để mở form tạo mới.
+
+### Nhóm thông tin bắt buộc
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Nhà cung cấp | ✅ | Chọn nhà cung cấp hàng nhập |
+| Ngày nhập | ✅ | Ngày giờ ghi nhận nhập kho |
+| Kho nhập | ✅ | Kho nhận hàng |
+
+### Nhóm thông tin nghiệp vụ
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Loại phiếu nhập | ✅ | Mua hàng, chuyển kho, trả hàng, điều chỉnh |
+| Tham chiếu PO | Tùy loại | Với loại `PURCHASE`, cần tham chiếu PO phù hợp |
+| Sản phẩm | ✅ | Danh sách item nhập |
+| Số lượng, đơn vị, đơn giá | ✅ | Dữ liệu tính tiền và quy đổi tồn kho |
+| Thuế/chiết khấu item | | Tính thành tiền từng dòng |
+| Ghi chú khách hàng và nội bộ | | Phục vụ vận hành và kiểm soát |
+
+### Các bước thao tác nhanh
+
+1. Tạo phiếu nhập, chọn kho nhận và nhà cung cấp.
+2. Thêm sản phẩm và số lượng thực tế cần nhập.
+3. Lưu phiếu ở trạng thái nháp để kiểm tra lại.
+4. Gửi duyệt khi thông tin đã đầy đủ.
+5. Chỉ bấm hoàn thành khi hàng đã nhận thực tế.
+
+## Trạng thái xử lý
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Phiếu nháp, còn chỉnh sửa |
+| PENDING | Chờ duyệt |
+| APPROVED | Đã duyệt |
+| PARTIAL_RECEIVED | Nhập một phần |
+| COMPLETED | Nhập kho hoàn tất |
+| CANCELLED | Phiếu đã hủy |
+
+Luồng thường gặp:
+
+`DRAFT -> PENDING -> APPROVED -> COMPLETED`
+
+## Ảnh hưởng dữ liệu tồn kho
+
+### Khi duyệt (APPROVED)
+
+- Hệ thống ghi nhận hàng đang về.
+
+### Khi hoàn thành (COMPLETED)
+
+- Tồn kho thực tế tăng.
+- Số lượng hàng đang về giảm.
+
+## Trang chi tiết phiếu nhập
+
+Màn hình chi tiết hiển thị các nhóm thông tin:
+
+- thông tin header của phiếu (mã, ngày, kho, NCC, trạng thái)
+- danh sách item (sản phẩm, số lượng, đơn giá, thuế, chiết khấu)
+- thông tin tài chính (tổng tiền, thuế, chiết khấu, thành tiền)
+- lịch sử thao tác/trạng thái liên quan
+
+## Quy tắc chỉnh sửa và thao tác
+
+- Chỉ sửa/xóa khi phiếu ở `DRAFT` hoặc `PENDING`.
+- Chỉ hoàn thành khi đã nhận hàng thực tế.
+- Không sửa nghiệp vụ trên phiếu đã `COMPLETED`.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Dùng để |
+|---|---|
+| `receipts.read` | Xem danh sách và chi tiết phiếu nhập |
+| `receipts.create` | Tạo phiếu nhập mới |
+| `receipts.update` | Sửa phiếu khi còn nháp/chờ duyệt |
+| `receipts.delete` | Xóa phiếu hợp lệ |
+| `receipts.approve` | Duyệt và hoàn thành phiếu nhập |
+
+Gợi ý phân quyền:
+
+- Nhân viên kho: `receipts.read`, `receipts.create`
+- Tổ trưởng kho: thêm `receipts.update`
+- Quản lý kho/Admin: đầy đủ các quyền trên, gồm `receipts.approve` và `receipts.delete`
+
+## Lỗi thường gặp và lưu ý vận hành
+
+- Duyệt thành công nhưng tồn chưa tăng: đây là hành vi đúng, tồn thực tăng ở bước `COMPLETED`.
+- Hàng đang về tăng không như kỳ vọng: kiểm tra có nhiều phiếu liên quan cùng đơn mua hay không.
+- Không thể xóa/hủy phiếu: kiểm tra trạng thái phiếu và các ràng buộc liên kết.
+- Nên đối chiếu số lượng thực nhận trước khi hoàn thành để tránh phải điều chỉnh tồn kho sau đó.

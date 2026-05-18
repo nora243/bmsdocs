@@ -1,0 +1,39 @@
+---
+title: Nhập kho (PNK)
+---
+
+# Phiếu nhập kho (PNK)
+
+## Tổng quan
+
+Phiếu nhập kho ghi nhận hàng hóa nhận từ nhà cung cấp vào kho.
+
+Mã format: `PNK-DDMMYY-XXXX` (ví dụ: `PNK-170526-0001`)
+
+## Tạo phiếu nhập kho
+
+### Từ đơn đặt hàng (PO)
+
+1. Mở PO có trạng thái `approved` hoặc `ordered`
+2. Nhấn **Nhập kho**
+3. Kiểm tra và điều chỉnh số lượng thực nhận
+4. Nhấn **Xác nhận nhập kho**
+
+### Nhập một phần
+
+BMS hỗ trợ nhập kho nhiều lần từ cùng một PO (partial receipt):
+- Lần 1: nhập 50/100 sản phẩm → PO chuyển sang `partial`
+- Lần 2: nhập 50 còn lại → PO chuyển sang `completed`
+
+## Thông tin phiếu nhập
+
+| Trường | Mô tả |
+|--------|-------|
+| PO liên quan | Đơn đặt hàng gốc |
+| Kho nhập | Kho nhận hàng |
+| Ngày nhập | Ngày thực tế nhận hàng |
+| Số lượng nhận | Số lượng từng sản phẩm thực tế nhận |
+
+## Ảnh hưởng tồn kho
+
+Sau khi xác nhận, tồn kho tự động tăng lên theo số lượng nhập.

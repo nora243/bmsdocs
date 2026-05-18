@@ -1,0 +1,177 @@
+---
+title: Phiếu xuất kho (PXK)
+---
+
+# Phiếu xuất kho (PXK)
+
+## Tổng quan
+
+Phiếu xuất kho dùng để ghi nhận hàng đi ra khỏi kho.
+
+Bạn có thể dùng phiếu xuất cho các trường hợp:
+
+- xuất bán hàng
+- xuất chuyển kho
+- xuất trả nhà cung cấp
+- xuất điều chỉnh, hư hỏng, hàng mẫu
+
+## Vị trí trong quy trình
+
+```
+Đơn bán / Nhu cầu xuất kho -> Phiếu xuất kho (PXK) -> Giữ chỗ tồn -> Xuất thực tế -> Cập nhật tồn kho
+```
+
+## Truy cập chức năng
+
+Vào **ERP -> Kho -> Phiếu xuất** để mở danh sách phiếu xuất.
+
+Tại màn hình danh sách, người dùng có thể:
+
+- xem danh sách theo phân trang
+- lọc theo mã phiếu, kho, khách hàng, sản phẩm, trạng thái, loại phiếu, ưu tiên, khoảng ngày
+- tạo phiếu mới
+- mở chi tiết từng phiếu
+- duyệt, hoàn thành, sửa, xóa theo trạng thái phiếu
+
+## Danh sách và bộ lọc
+
+### Các cột chính trên danh sách
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã phiếu | Mã chứng từ PXK và thông tin ngày tạo/người tạo |
+| Mã SO | Mã đơn hàng liên quan (nếu có) |
+| Khách hàng/Kho | Đối tượng nhận hàng và kho xuất |
+| Tổng tiền | Giá trị thành tiền của phiếu |
+| Thanh toán/Hóa đơn | Trạng thái thanh toán và mã hóa đơn |
+| Trạng thái | Trạng thái xử lý hiện tại |
+
+### Bộ lọc đang hỗ trợ
+
+| Bộ lọc | Mô tả |
+|---|---|
+| Tìm kiếm mã phiếu | Tìm theo mã phiếu xuất |
+| Kho xuất | Lọc theo kho |
+| Khách hàng | Lọc theo khách hàng |
+| Trạng thái | Lọc theo trạng thái xử lý |
+| Loại phiếu xuất | Chuyển kho, hư hỏng, hàng mẫu, điều chỉnh, bán hàng, trả NCC |
+| Độ ưu tiên | `URGENT`, `HIGH`, `NORMAL`, `LOW` |
+| Sản phẩm | Lọc phiếu có sản phẩm tương ứng |
+| Khoảng ngày | Lọc theo ngày xuất |
+
+## Tạo phiếu xuất kho
+
+Nhấn **Tạo phiếu xuất** trong màn hình danh sách để mở form tạo mới.
+
+### Nhóm thông tin chính
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Loại phiếu xuất | ✅ | Xác định loại nghiệp vụ xuất |
+| Kho xuất | ✅ | Kho cấp hàng |
+| Ngày xuất | ✅ | Ngày ghi nhận xuất |
+| Kho nhận | Tùy loại | Bắt buộc khi `TRANSFER_OUT` |
+| Khách hàng | Tùy loại | Dùng cho các phiếu xuất có đối tượng khách hàng |
+
+### Nhóm giao vận
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Ngày giao | | Dự kiến hoặc thực tế giao hàng |
+| Phương thức vận chuyển | | Ví dụ: giao nội bộ, đơn vị vận chuyển ngoài |
+| Địa chỉ giao hàng | | Nơi nhận hàng |
+| Người nhận/SĐT | | Thông tin liên hệ giao nhận |
+| COD | | Đánh dấu thu tiền khi giao hàng |
+
+### Nhóm sản phẩm
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Danh sách hàng xuất |
+| Số lượng/đơn vị | ✅ | Số lượng xuất theo đơn vị |
+| Đơn giá/chiết khấu/thuế | | Tính giá trị chứng từ |
+| Lô hàng/Vị trí | | Dùng cho quản lý xuất theo lô, vị trí |
+
+### Các bước thao tác nhanh
+
+1. Tạo phiếu xuất, chọn đúng kho và loại phiếu.
+2. Thêm sản phẩm, kiểm tra số lượng khả dụng trước khi lưu.
+3. Lưu nháp để rà soát thông tin giao hàng.
+4. Gửi duyệt khi đã chắc chắn đủ hàng.
+5. Hoàn thành phiếu sau khi xuất hàng thực tế.
+
+## Trạng thái xử lý
+
+### Trạng thái nghiệp vụ đầy đủ
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Phiếu nháp |
+| PENDING | Chờ duyệt |
+| APPROVED | Đã duyệt, đã giữ chỗ tồn |
+| PICKING | Đang lấy hàng |
+| PICKED | Đã lấy hàng |
+| PACKING | Đang đóng gói |
+| PACKED | Đã đóng gói |
+| COMPLETED | Xuất kho hoàn tất |
+| DELIVERING | Đang giao |
+| DELIVERED | Đã giao |
+| CANCELLED | Đã hủy |
+
+Luồng tối thiểu thường dùng trên giao diện danh sách:
+
+`DRAFT/PENDING -> APPROVED -> COMPLETED`
+
+## Ảnh hưởng dữ liệu tồn kho
+
+### Khi duyệt (APPROVED)
+
+- Hệ thống giữ chỗ số lượng hàng chuẩn bị xuất.
+- Lượng khả dụng để xuất ngay sẽ giảm.
+
+### Khi hoàn thành (COMPLETED)
+
+- Tồn kho thực tế giảm.
+- Số đã giữ chỗ cũng giảm theo.
+
+## Trang chi tiết phiếu xuất
+
+Màn hình chi tiết hiển thị các nhóm thông tin:
+
+- thông tin header (mã phiếu, loại phiếu, kho xuất, trạng thái)
+- thông tin đối tượng nhận hàng/giao vận
+- danh sách item và số lượng xuất
+- thông tin tài chính và ghi chú
+- lịch sử trạng thái/thao tác
+
+## Quy tắc chỉnh sửa và thao tác
+
+- Chỉ sửa/xóa khi phiếu còn `DRAFT` hoặc `PENDING`.
+- Duyệt để giữ chỗ, hoàn thành để trừ tồn thực tế.
+- Không hoàn thành khi chưa có xác nhận xuất hàng thực tế.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Dùng để |
+|---|---|
+| `issues.read` | Xem danh sách và chi tiết phiếu xuất |
+| `issues.create` | Tạo phiếu xuất mới |
+| `issues.update` | Sửa phiếu khi còn nháp/chờ duyệt |
+| `issues.delete` | Xóa phiếu hợp lệ |
+| `issues.approve` | Duyệt phiếu xuất |
+| `issues.picking` | Thao tác bước lấy hàng |
+| `issues.packing` | Thao tác bước đóng gói |
+| `issues.delivering` | Thao tác bước giao hàng |
+
+Gợi ý phân quyền:
+
+- Nhân viên kho: `issues.read`, `issues.create`
+- Tổ trưởng kho: thêm `issues.update`, `issues.picking`, `issues.packing`
+- Quản lý kho/Admin: đầy đủ các quyền trên, gồm `issues.approve`, `issues.delete`, `issues.delivering`
+
+## Lỗi thường gặp và lưu ý vận hành
+
+- Duyệt xong nhưng tồn thực chưa giảm: đây là hành vi đúng, duyệt chỉ giữ chỗ.
+- Hoàn thành bị báo thiếu hàng: kiểm tra số khả dụng và các phiếu đã giữ chỗ trước đó.
+- Không thể hủy phiếu: kiểm tra ràng buộc với chứng từ liên kết, đặc biệt phiếu liên quan SO.
+- Với phiếu số lượng lớn, nên kiểm tra tồn theo lô trước khi hoàn thành để tránh lỗi trừ tồn.

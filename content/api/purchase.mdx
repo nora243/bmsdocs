@@ -1,0 +1,75 @@
+---
+title: API Mua hàng
+---
+
+# API Mua hàng
+
+## Đơn đặt hàng (Purchase Orders)
+
+### Danh sách PO
+
+```http
+GET /api/v1/purchase/orders?page=1&limit=20&status=approved
+```
+
+### Chi tiết PO
+
+```http
+GET /api/v1/purchase/orders/:id
+```
+
+### Tạo PO
+
+```http
+POST /api/v1/purchase/orders
+Content-Type: application/json
+
+{
+  "supplier_id": 1,
+  "warehouse_id": 1,
+  "expected_date": "2026-06-01",
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 100,
+      "unit_price": 50000
+    }
+  ],
+  "notes": "Ghi chú đơn hàng"
+}
+```
+
+### Duyệt PO
+
+```http
+PATCH /api/v1/purchase/orders/:id/approve
+```
+
+### Hủy PO
+
+```http
+PATCH /api/v1/purchase/orders/:id/cancel
+```
+
+---
+
+## Nhập kho (Goods Receipts)
+
+### Tạo phiếu nhập kho từ PO
+
+```http
+POST /api/v1/purchase/goods-receipts
+Content-Type: application/json
+
+{
+  "purchase_order_id": 1,
+  "warehouse_id": 1,
+  "received_date": "2026-05-17",
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 100
+    }
+  ]
+}
+```

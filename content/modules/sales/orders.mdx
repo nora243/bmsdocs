@@ -1,0 +1,194 @@
+---
+title: Đơn hàng bán (SO)
+---
+
+# Đơn hàng bán (SO)
+
+## Tổng quan
+
+Đơn hàng bán là bước chốt giao dịch với khách sau khi đã thống nhất báo giá.
+
+SO giúp bạn quản lý:
+
+- thông tin khách hàng và điều khoản bán
+- danh sách sản phẩm và số lượng giao
+- tiến độ xuất kho, giao hàng và thanh toán
+
+## Vị trí trong quy trình
+
+```text
+Báo giá (SQ) -> Đơn hàng bán (SO) -> Xuất kho (PXK) -> Hóa đơn (SIV) -> Thu tiền
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Sales -> Orders.
+
+Bạn có thể:
+
+- tạo đơn hàng mới
+- tạo đơn hàng từ báo giá
+- duyệt đơn hàng
+- cập nhật trạng thái xử lý
+- tạo phiếu xuất kho từ đơn hàng
+
+Ngoài luồng tạo SO thông thường, hệ thống có trang tạo PO + SO kết hợp tại:
+
+- ERP -> Purchase -> Orders -> Tạo PO + SO kết hợp
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã ĐH | Mã đơn hàng |
+| Mã PO | Đơn mua liên kết (nếu có) |
+| Phiếu xuất kho | Danh sách PXK liên quan |
+| Khách hàng/NV sales | Người mua và người phụ trách |
+| Tổng tiền | Giá trị đơn hàng |
+| Trạng thái | Tình trạng xử lý |
+| Thanh toán | Chưa thanh toán, một phần, đã thanh toán |
+
+### Bộ lọc thường dùng
+
+- tìm theo mã đơn hàng
+- lọc theo trạng thái
+- lọc theo thanh toán
+- lọc theo khách hàng
+- lọc theo nhân viên sales
+- lọc theo khoảng ngày
+
+## Tạo đơn hàng mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Khách hàng | ✅ | Bắt buộc |
+| Ngày đặt hàng | ✅ | Mặc định ngày hiện tại |
+| Điều khoản thanh toán | | Theo hợp đồng/chính sách |
+| Mức độ ưu tiên | | Low/Normal/High/Urgent |
+| Địa chỉ giao hàng | | Phục vụ giao vận |
+
+### Dòng sản phẩm
+
+Mỗi đơn hàng cần ít nhất 1 dòng sản phẩm.
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn từ danh mục |
+| Số lượng | ✅ | Lớn hơn 0 |
+| Đơn vị | | Theo đơn vị bán |
+| Đơn giá | ✅ | Giá bán |
+| Chiết khấu/Thuế | | Theo dòng hàng |
+
+### Phân bổ nguồn hàng (quan trọng)
+
+Khi lưu SO, bạn cần xác định nguồn hàng cho từng dòng:
+
+- lấy trực tiếp từ tồn kho hiện có
+- hoặc chọn nguồn bổ sung (mua thêm, điều chuyển, sản xuất)
+
+Mục đích là để hệ thống biết sẽ xuất từ đâu và tránh thiếu hàng khi tạo PXK.
+
+## Các bước thao tác nhanh
+
+1. Tạo SO mới hoặc tạo từ SQ.
+2. Nhập thông tin khách hàng và điều khoản.
+3. Thêm sản phẩm và số lượng.
+4. Phân bổ nguồn hàng cho từng dòng.
+5. Lưu nháp và kiểm tra lại.
+6. Duyệt đơn hàng.
+7. Tạo PXK và theo dõi tiến độ giao hàng.
+
+## Tạo PO + SO kết hợp
+
+Trang này phù hợp khi bạn cần mua hàng và bán hàng gần như đồng thời cho cùng một giao dịch.
+
+Mục tiêu của màn hình kết hợp:
+
+- tạo PO và SO trong một lần thao tác
+- theo dõi nhanh chênh lệch mua - bán (lợi nhuận gộp)
+- giảm nhập liệu trùng giữa team mua hàng và bán hàng
+
+### Bố cục chính
+
+- khối thông tin PO
+- khối thông tin dùng chung
+- khối thông tin SO
+- bảng sản phẩm kết hợp
+- panel tổng hợp: giá trị PO, giá trị SO, lợi nhuận và biên lợi nhuận
+
+### Các bước thao tác nhanh
+
+1. Vào màn hình Tạo PO + SO kết hợp.
+2. Nhập thông tin nhà cung cấp ở khối PO.
+3. Nhập thông tin khách hàng và điều khoản ở khối dùng chung/SO.
+4. Thêm sản phẩm vào bảng kết hợp và cập nhật giá mua, giá bán.
+5. Kiểm tra panel tổng hợp để xem tổng PO, tổng SO và lợi nhuận dự kiến.
+6. Nhấn Tạo PO & SO để tạo đồng thời cả hai chứng từ.
+
+### Lưu ý vận hành
+
+- Nút Tạo PO & SO chỉ dùng được khi đã có ít nhất 1 dòng sản phẩm.
+- Nên kiểm tra kỹ biên lợi nhuận trước khi tạo chứng từ.
+- Nếu phát sinh sản phẩm mới chưa có trong danh mục, có thể tạo nhanh ngay trong màn hình này.
+
+## Trạng thái đơn hàng
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Nháp |
+| PENDING | Chờ duyệt |
+| APPROVED | Đã duyệt |
+| PROCESSING | Đang xử lý xuất kho |
+| PARTIAL_EXPORTED | Đã xuất một phần |
+| FULL_EXPORTED | Đã xuất đủ |
+| SHIPPED | Đã gửi hàng |
+| DELIVERED | Đã giao hàng |
+| COMPLETED | Hoàn thành |
+| CANCELLED | Đã hủy |
+| RETURN | Có trả hàng liên quan |
+
+## Trang chi tiết SO
+
+Tại trang chi tiết, bạn có thể:
+
+- xem đầy đủ thông tin khách và sản phẩm
+- theo dõi trạng thái xuất kho/giao hàng/thanh toán
+- duyệt đơn, cập nhật trạng thái
+- tạo phiếu xuất kho
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| sales_orders.read | Xem toàn bộ SO |
+| sales_orders.read_own | Chỉ xem SO thuộc phạm vi của mình |
+| sales_orders.create | Tạo SO |
+| sales_orders.update | Sửa toàn bộ SO |
+| sales_orders.update_own | Sửa SO thuộc phạm vi của mình |
+| sales_orders.delete | Xóa toàn bộ SO |
+| sales_orders.delete_own | Xóa SO thuộc phạm vi của mình |
+| sales_orders.approve | Duyệt/hủy SO theo quy trình |
+| issues.create | Tạo phiếu xuất kho từ SO |
+| purchase_orders.create | Tạo PO (bắt buộc khi dùng màn hình PO + SO kết hợp) |
+
+Gợi ý phân quyền:
+
+- Nhân viên sales: read_own, create, update_own
+- Trưởng nhóm sales: thêm read, update, approve
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không lưu được SO: kiểm tra đã có ít nhất 1 sản phẩm và phân bổ nguồn hàng hợp lệ chưa.
+- Không duyệt được SO: kiểm tra trạng thái hiện tại và quyền duyệt.
+- Không tạo được PXK: kiểm tra đơn hàng đã ở trạng thái phù hợp và không bị trùng phiếu.
+
+## Gợi ý vận hành
+
+- Nên tạo SO từ SQ để giảm nhập liệu lại.
+- Luôn kiểm tra nguồn hàng trước khi duyệt.
+- Sau khi duyệt, theo dõi ngay tiến độ PXK để tránh trễ giao hàng.

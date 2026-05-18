@@ -1,0 +1,178 @@
+---
+title: Đơn đặt hàng (PO)
+---
+
+# Đơn đặt hàng (PO)
+
+## Tổng quan
+
+Đơn đặt hàng (Purchase Order — PO) là văn bản chính thức xác nhận việc mua hàng với nhà cung cấp, bao gồm danh sách hàng hóa, giá cả, điều khoản thanh toán và giao hàng.
+
+Mã định danh tự động theo format: **`PO-DDMMYY-XXXX`** (VD: `PO-170526-0001`).
+
+## Vị trí trong quy trình
+
+```
+PR → RFQ → Báo giá (PQ) → Đơn đặt hàng (PO) → Nhập kho (PNK) → Hóa đơn → Thanh toán
+```
+
+> **💡 Lưu ý:** Có thể tạo thẳng PO mà không cần đi qua PR → RFQ → PQ để tiết kiệm thời gian. Tùy theo luồng hoạt động thực tế của từng doanh nghiệp.
+
+---
+
+## Trạng thái PO
+
+### Trạng thái luồng chính
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Mới tạo, chưa gửi duyệt — có thể chỉnh sửa và xóa |
+| **Chờ duyệt** (SUBMITTED) | Đã gửi lên quản lý, chờ phê duyệt — vẫn có thể chỉnh sửa |
+| **Đã duyệt** (APPROVED) | Quản lý đã phê duyệt, sẵn sàng giao nhà cung cấp thực hiện |
+| **Đang vận chuyển** (IN_TRANSIT) | Hàng đang trên đường về |
+| **Hoàn thành** (COMPLETED) | Đã nhận đủ hàng |
+| **Đã hủy** (CANCELLED) | PO bị hủy, phiếu nhập kho liên kết cũng bị hủy nếu còn ở trạng thái DRAFT/PENDING |
+| **Đã đóng** (CLOSED) | Đã đóng sau khi hủy |
+
+### Trạng thái thanh toán
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Chưa thanh toán** (UNPAID) | Chưa có thanh toán nào |
+| **Thanh toán một phần** (PARTIAL) | Đã thanh toán một phần |
+| **Đã thanh toán** (PAID) | Đã thanh toán đủ |
+
+### Trạng thái nhận hàng
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Chờ nhận** (PENDING) | Chưa có phiếu nhập kho nào |
+| **Nhận một phần** (PARTIAL) | Đã nhập kho một phần số lượng |
+| **Đã nhận đủ** (COMPLETED) | Đã nhập kho đủ toàn bộ hàng |
+
+### Luồng chuyển trạng thái
+
+```
+DRAFT → SUBMITTED → (APPROVED) → IN_TRANSIT → COMPLETED
+         ↓              ↓             ↓
+      CANCELLED      CANCELLED    CANCELLED → CLOSED
+```
+
+> Hệ thống chỉ cho phép chuyển trạng thái theo đúng luồng trên. Mọi lần thay đổi đều được ghi vào **Lịch sử trạng thái**.
+
+---
+
+## Tạo đơn đặt hàng
+
+### Từ báo giá (PQ) được chọn
+
+1. Mở PQ đã được đánh dấu **Được chọn**.
+2. Nhấn **Tạo PO** — hệ thống tự điền nhà cung cấp, hàng hóa, giá từ PQ.
+3. Bổ sung thêm kho nhận, điều khoản thanh toán, địa chỉ giao hàng nếu cần.
+4. Nhấn **Lưu**.
+
+### Tạo trực tiếp
+
+1. Vào **Mua hàng → Đơn đặt hàng**, nhấn **Tạo mới**.
+2. Điền đầy đủ thông tin.
+3. Nhấn **Lưu**.
+
+---
+
+## Thông tin đơn hàng
+
+### Thông tin chung
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Nhà cung cấp | ✅ | Đối tác cung ứng hàng hóa |
+| Người liên hệ NCC | | Đầu mối liên hệ tại nhà cung cấp |
+| Ngày lập PO | | Mặc định ngày hiện tại |
+| Ngày dự kiến nhận hàng | | Hạn giao hàng mong muốn |
+| Kho nhận hàng | | Kho sẽ nhập hàng |
+| Địa chỉ giao hàng | | Địa chỉ nhận nếu khác kho mặc định |
+| Điều khoản thanh toán | | Net 30, COD, v.v. |
+| Điều kiện giao hàng | | Điều khoản giao nhận hàng |
+| Incoterms | | Điều khoản thương mại quốc tế (EXW, FOB, CIF…) |
+| Phương thức vận chuyển | | Đường bộ, đường biển, hàng không… |
+| Đơn vị tiền tệ | | Mặc định VND |
+| Tỷ giá | | Tỷ giá quy đổi về VND (mặc định 1) |
+| Mức ưu tiên | | URGENT, HIGH, NORMAL (mặc định), LOW |
+| Mã dự án | | Gán vào dự án nếu có |
+| Trung tâm chi phí | | Mã trung tâm chi phí |
+| Phòng ban | | Phòng ban yêu cầu |
+| Ghi chú | | Ghi chú gửi cho nhà cung cấp |
+| Ghi chú nội bộ | | Không in ra phiếu |
+| Điều khoản & điều kiện | | Điều khoản hợp đồng bổ sung |
+
+### Danh sách hàng hóa
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn từ danh mục |
+| Tên sản phẩm | ✅ | Tên in trên PO |
+| SKU | | Mã sản phẩm |
+| Thương hiệu | | Nhà sản xuất/thương hiệu |
+| Model | | Mã model |
+| Thông số kỹ thuật | | Yêu cầu kỹ thuật |
+| Số lượng đặt | ✅ | Số lượng mua (> 0) |
+| Đơn vị tính | | Đơn vị đo lường |
+| Đơn giá | ✅ | Giá trên một đơn vị (> 0) |
+| Chiết khấu (%) | | Tỷ lệ chiết khấu |
+| Chiết khấu (tiền) | | Số tiền chiết khấu cố định |
+| Thuế (%) | | Thuế áp dụng cho dòng hàng |
+| Tiêu chuẩn chất lượng | | Yêu cầu chất lượng khi nhận hàng |
+| Bảo hành (tháng) | | Thời gian bảo hành |
+| Ghi chú | | Ghi chú dòng hàng |
+
+### Tổng tiền PO
+
+| Mục | Công thức |
+|---|---|
+| Tạm tính (Subtotal) | Tổng (Số lượng × Đơn giá) |
+| Chiết khấu | Tổng chiết khấu các dòng |
+| Thuế | Tổng thuế các dòng |
+| Phí vận chuyển | Nhập thủ công |
+| Chi phí khác | Nhập thủ công |
+| **Tổng cộng** | Tạm tính − Chiết khấu + Thuế + Vận chuyển + Chi phí khác |
+| Tổng VND | Tổng cộng × Tỷ giá |
+
+---
+
+## Phê duyệt PO
+
+- **Submit** (DRAFT → SUBMITTED): Gửi PO lên quản lý phê duyệt.
+- **Approve** (SUBMITTED/DRAFT → APPROVED): Quản lý xác nhận PO. Nếu PO liên kết với đơn bán hàng (SO), SO phải ở trạng thái đã xác nhận trước.
+- Sau khi APPROVED, chuyển **IN_TRANSIT** khi hàng xuất phát từ nhà cung cấp.
+
+---
+
+## Nhận hàng
+
+Sau khi hàng về, tạo [Phiếu nhập kho](/modules/purchase/goods-receipt) từ PO. Hệ thống tự cập nhật **Trạng thái nhận hàng** và **Số lượng đã nhận** trên từng dòng hàng.
+
+---
+
+## Hủy PO
+
+Khi hủy PO, hệ thống tự động kiểm tra phiếu nhập kho liên kết:
+- Nếu phiếu nhập kho đang ở trạng thái **DRAFT** hoặc **PENDING** → cũng bị hủy theo.
+- Nếu phiếu nhập kho đã ở trạng thái khác (đã nhập, đang xử lý…) → **không cho phép hủy PO**, cần xử lý phiếu nhập kho trước.
+
+PO liên kết với đơn bán hàng (SO) không thể xóa khi SO vẫn còn tồn tại.
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_orders: read` | Xem tất cả PO |
+| `purchase_orders: read_own` | Chỉ xem PO do mình tạo |
+| `purchase_orders: create` | Tạo PO mới |
+| `purchase_orders: update` | Chỉnh sửa tất cả PO |
+| `purchase_orders: update_own` | Chỉnh sửa PO do mình tạo |
+| `purchase_orders: delete` | Xóa PO (chỉ DRAFT/SUBMITTED) |
+| `purchase_orders: delete_own` | Xóa PO do mình tạo (chỉ DRAFT/SUBMITTED) |
+| `purchase_orders: approve` | Phê duyệt PO |
+| `purchase_orders: export` | Xuất danh sách PO ra Excel |

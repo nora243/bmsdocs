@@ -1,0 +1,117 @@
+---
+title: Đề xuất mua hàng (PR)
+---
+
+# Đề xuất mua hàng (PR)
+
+## Tổng quan
+
+Đề xuất mua hàng (Purchase Requisition) là bước đầu tiên trong quy trình mua hàng, cho phép nhân viên yêu cầu mua sắm hàng hóa/dịch vụ và trình quản lý phê duyệt trước khi chuyển sang tạo RFQ hoặc PO.
+
+Mã định danh tự động theo format: **`PR-DDMMYY-XXXX`** (VD: `PR-170526-0001`).
+
+## Vị trí trong quy trình
+
+```
+Đề xuất mua (PR) → Đề nghị báo giá (RFQ) → Báo giá (PQ) → Đơn đặt hàng (PO) → ...
+```
+
+---
+
+## Trạng thái PR
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Mới tạo, chưa gửi duyệt — có thể chỉnh sửa tự do |
+| **Chờ duyệt** (SUBMITTED) | Đã gửi lên quản lý, chờ phê duyệt — vẫn có thể chỉnh sửa |
+| **Đã duyệt** (APPROVED) | Quản lý đã phê duyệt, sẵn sàng tạo RFQ hoặc PO |
+| **Từ chối** (REJECTED) | Quản lý từ chối, cần chỉnh sửa và gửi lại |
+| **Hoàn thành** (COMPLETED) | Đã tạo PO đầy đủ, không thể xóa |
+
+---
+
+## Tạo đề xuất mua hàng mới
+
+Vào **Mua hàng → Đề xuất mua hàng**, nhấn **Tạo phiếu yêu cầu**.
+
+### Thông tin chung
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Tiêu đề | ✅ | Mô tả ngắn gọn nhu cầu mua sắm |
+| Loại phiếu yêu cầu | ✅ | Loại hình mua hàng (VD: mua hàng thông thường, dịch vụ, tài sản…) |
+| Mô tả | | Chi tiết lý do, mục đích mua hàng |
+| Phòng ban | | Phòng ban có nhu cầu mua hàng |
+| Mã dự án | | Gán vào dự án nếu có |
+| Trung tâm chi phí | | Mã trung tâm chi phí để phân bổ ngân sách |
+| Kho nhận hàng | | Kho dự kiến nhập hàng |
+| Ngày cần hàng | | Hạn chót cần nhận hàng |
+| Địa chỉ giao hàng | | Địa chỉ nhận hàng nếu khác kho mặc định |
+| Mức ưu tiên | | **URGENT**, **HIGH**, **NORMAL** (mặc định), **LOW** |
+| Loại tài liệu tham chiếu | | Tên loại tài liệu liên quan (VD: hợp đồng, dự án) |
+| Mã tài liệu tham chiếu | | Số hiệu tài liệu tham chiếu |
+| Ghi chú | | Ghi chú gửi kèm phiếu |
+| Ghi chú nội bộ | | Ghi chú nội bộ, không in ra phiếu |
+
+### Danh sách hàng hóa
+
+Thêm ít nhất 1 sản phẩm vào danh sách:
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn từ danh mục hàng hóa |
+| Số lượng yêu cầu | ✅ | Số lượng cần mua (> 0) |
+| Đơn vị tính | | Đơn vị đo lường |
+| Đơn giá dự kiến | | Giá ước tính để tính tổng dự toán |
+| Thông số kỹ thuật | | Yêu cầu kỹ thuật đặc biệt |
+| Thương hiệu ưu tiên | | Thương hiệu hoặc nhà sản xuất ưu tiên |
+| Ghi chú dòng hàng | | Ghi chú riêng cho từng sản phẩm |
+
+> Hệ thống tự động tính **Tổng dự toán** từ số lượng × đơn giá dự kiến của từng dòng hàng.
+
+---
+
+## Quy trình phê duyệt
+
+### Gửi duyệt
+
+Sau khi tạo xong, PR ở trạng thái **Nháp**. Nhấn **Gửi duyệt** để chuyển sang **Chờ duyệt**. Chỉ PR đang ở trạng thái Nháp mới được gửi duyệt.
+
+### Phê duyệt (dành cho quản lý)
+
+Người có quyền `purchase_requisitions: approve` có thể thực hiện 3 hành động:
+
+| Hành động | Trạng thái kết quả | Mô tả |
+|---|---|---|
+| **APPROVED** | Đã duyệt | Chấp thuận yêu cầu mua hàng |
+| **REJECTED** | Từ chối | Từ chối, ghi rõ lý do |
+| **RETURNED** | Nháp | Trả lại để bổ sung/chỉnh sửa |
+
+Mọi hành động phê duyệt đều được ghi vào **Lịch sử phê duyệt** kèm người thực hiện, thời gian và ghi chú.
+
+### Hoàn thành
+
+Sau khi PR được duyệt và toàn bộ hàng hóa đã tạo PO đủ số lượng, nhấn **Hoàn thành** để chuyển sang trạng thái **COMPLETED**. PR đã hoàn thành không thể xóa.
+
+---
+
+## Lưu ý khi chỉnh sửa
+
+- PR ở trạng thái **Nháp** hoặc **Chờ duyệt** mới có thể chỉnh sửa.
+- PR đã **Duyệt**, **Từ chối** hoặc **Hoàn thành** không được phép sửa (cần trả về Nháp trước).
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_requisitions: read` | Xem tất cả PR |
+| `purchase_requisitions: read_own` | Chỉ xem PR do mình tạo |
+| `purchase_requisitions: create` | Tạo PR mới |
+| `purchase_requisitions: update` | Chỉnh sửa tất cả PR |
+| `purchase_requisitions: update_own` | Chỉnh sửa PR do mình tạo |
+| `purchase_requisitions: delete` | Xóa tất cả PR (trừ COMPLETED) |
+| `purchase_requisitions: delete_own` | Xóa PR do mình tạo (trừ COMPLETED) |
+| `purchase_requisitions: approve` | Phê duyệt / Từ chối / Trả lại PR |
+

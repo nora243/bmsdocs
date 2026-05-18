@@ -1,0 +1,55 @@
+---
+title: Câu hỏi thường gặp
+---
+
+# Câu hỏi thường gặp (FAQ)
+
+## Tài khoản & Đăng nhập
+
+### Quên mật khẩu thì làm thế nào?
+
+Liên hệ quản trị viên hệ thống để được reset mật khẩu. Quản trị viên vào **Hệ thống → Người dùng**, tìm tài khoản và nhấn **Đặt lại mật khẩu**.
+
+### Tại sao tôi không thấy menu một số module?
+
+Quyền truy cập module do quản trị viên cấp. Liên hệ admin để được cấp thêm quyền.
+
+---
+
+## Mua hàng
+
+### Đơn đặt hàng bị từ chối thì phải làm lại từ đầu không?
+
+Không. Bạn có thể sửa đơn đã từ chối và gửi lại để duyệt.
+
+### Nhập kho nhiều lần cho cùng một PO có được không?
+
+Có. BMS hỗ trợ nhập kho một phần (partial receipt). Hệ thống tự tính số lượng còn thiếu so với PO.
+
+---
+
+## Bán hàng
+
+### Khách hàng đổi trả hàng thì xử lý thế nào?
+
+Vào **Bán hàng → Trả hàng**, tạo phiếu trả hàng liên kết với SO gốc. Hệ thống sẽ cập nhật lại tồn kho.
+
+---
+
+## Kho
+
+### Tại sao số lượng tồn kho không khớp?
+
+Kiểm tra các phiếu nhập/xuất chưa được xác nhận. Tồn kho chỉ cập nhật khi phiếu có trạng thái **Hoàn thành**.
+
+---
+
+## Kỹ thuật
+
+### API có hỗ trợ webhook không?
+
+Hiện tại BMS chưa hỗ trợ webhook. Bạn có thể dùng polling API để đồng bộ dữ liệu.
+
+### Rate limit của API là bao nhiêu?
+
+Mặc định 100 request/phút/IP. Liên hệ support nếu cần tăng giới hạn.

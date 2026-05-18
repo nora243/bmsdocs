@@ -1,0 +1,38 @@
+---
+title: Mua hàng
+---
+
+# Module Mua hàng
+
+## Tổng quan
+
+Module Mua hàng quản lý toàn bộ quy trình từ đề xuất mua đến thanh toán.
+
+## Quy trình
+
+```
+Đề xuất mua (PR) → Đề nghị báo giá (RFQ) → Báo giá (PQ) → Đơn đặt hàng (PO) → Nhập kho (PNK) → Hóa đơn (PI) → Thanh toán
+```
+
+## Các chức năng chính
+
+### Đề xuất mua hàng (PR)
+Nhân viên tạo yêu cầu mua hàng, quản lý duyệt trước khi chuyển thành PO.
+
+### Đề nghị báo giá (RFQ)
+Gửi yêu cầu báo giá đến nhà cung cấp, thu thập và so sánh báo giá.
+
+### Báo giá (PQ)
+Nhà cung cấp gửi báo giá chi tiết, bao gồm giá cả, thời gian giao hàng, điều khoản thanh toán.
+
+### Đơn đặt hàng (PO)
+Xác nhận mua hàng với nhà cung cấp. Mã format: `PO-DDMMYY-XXXX`.
+
+> **💡 Lưu ý:** Có thể tạo thẳng PO mà không cần đi qua các bước PR → RFQ → PQ để tiết kiệm thời gian. Tùy theo luồng hoạt động thực tế của từng doanh nghiệp để lựa chọn quy trình phù hợp.
+
+
+### Nhập kho (PNK)
+Ghi nhận hàng nhận từ nhà cung cấp vào kho. Mã format: `PNK-DDMMYY-XXXX`.
+
+### Hóa đơn mua
+Quản lý hóa đơn từ nhà cung cấp, đối chiếu với PO và PNK.

@@ -1,0 +1,75 @@
+---
+title: Quản lý vai trò
+---
+
+# Quản lý vai trò
+
+## Tổng quan
+
+Trang Roles giúp tổ chức nhóm quyền theo chức năng công việc, sau đó gán cho người dùng để quản lý truy cập nhất quán.
+
+## Truy cập chức năng
+
+Vào System -> Roles.
+
+Bạn có thể:
+
+- xem danh sách vai trò
+- tạo vai trò mới
+- chỉnh sửa thông tin vai trò
+- gán hoặc cập nhật danh sách quyền cho vai trò
+- xóa vai trò không còn sử dụng
+
+## Danh sách và tìm kiếm
+
+- dùng ô tìm kiếm để lọc theo tên vai trò
+- kiểm tra số người đang dùng vai trò trước khi chỉnh/xóa
+
+## Tạo vai trò mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Tên vai trò | ✅ | Ví dụ: Sales Manager |
+| Mô tả | | Mô tả phạm vi nghiệp vụ |
+| Trạng thái | | Active/Inactive |
+
+### Các bước thao tác nhanh
+
+1. Nhấn Thêm vai trò.
+2. Nhập tên và mô tả.
+3. Lưu vai trò.
+4. Mở chức năng chỉnh quyền để gán quyền cần thiết.
+
+## Gán quyền cho vai trò
+
+Bạn có thể gán quyền theo từng resource/action, ví dụ:
+
+- sales_orders.read
+- sales_orders.approve
+- users.read
+
+Khuyến nghị:
+
+- cấp tối thiểu cần thiết để làm việc
+- tách rõ vai trò xem dữ liệu và vai trò phê duyệt
+
+## Xóa vai trò
+
+Chỉ xóa khi vai trò không còn gán cho người dùng hoặc không còn dùng trong quy trình vận hành.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| roles.read | Xem danh sách/chi tiết vai trò |
+| roles.create | Tạo vai trò |
+| roles.update | Cập nhật vai trò và gán quyền |
+| roles.delete | Xóa vai trò |
+
+## Lỗi thường gặp và cách xử lý
+
+- Không sửa được quyền của role: kiểm tra quyền `roles.update`.
+- Không xóa được role: kiểm tra role đang được gán cho user hoặc là role hệ thống.
+- Người dùng vẫn không vào được chức năng sau khi gán role: reload phiên đăng nhập hoặc kiểm tra thiếu permission cụ thể.

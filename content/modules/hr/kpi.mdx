@@ -1,0 +1,186 @@
+---
+title: KPI
+---
+
+# KPI
+
+## Tổng quan
+
+Trang này hướng dẫn cách làm KPI hằng ngày cho quản lý và nhân viên, theo thứ tự dễ làm nhất.
+
+Mục tiêu của KPI trong hệ thống:
+
+- giao mục tiêu rõ ràng cho từng nhân viên
+- theo dõi mức hoàn thành theo kỳ
+- chốt kết quả minh bạch
+- dùng kết quả KPI để hỗ trợ tính thưởng/phạt lương (nếu doanh nghiệp bật tính năng này)
+
+## Vị trí trong quy trình
+
+```text
+Tạo kỳ KPI -> Tạo mẫu KPI -> Giao KPI cho nhân viên -> Nhân viên cập nhật kết quả -> Quản lý duyệt -> (tuỳ chọn) áp dụng vào lương
+```
+
+## Truy cập chức năng
+
+Vào **Staff -> KPI** để dùng dashboard KPI và các màn hình con:
+
+- KPI Dashboard
+- KPI Periods
+- KPI Templates
+- KPI Categories
+- KPI Indicators
+- My KPI
+- KPI Payroll
+
+## Chuẩn bị trước khi bắt đầu
+
+### 1. Tạo nhóm KPI
+
+Dùng **KPI Categories** để chia nhóm, ví dụ:
+
+- Doanh số
+- Chất lượng công việc
+- Tiến độ
+
+### 2. Tạo chỉ số KPI
+
+Dùng **KPI Indicators** để tạo chỉ số cụ thể, ví dụ:
+
+- Doanh thu tháng
+- Tỷ lệ hoàn thành đúng hạn
+- Tỷ lệ lỗi
+
+Khi tạo chỉ số, bạn chỉ cần quan tâm các thông tin chính:
+
+- tên chỉ số
+- đơn vị tính
+- mục tiêu đánh giá theo hướng tăng hay giảm
+- có dùng cho tính lương hay không
+
+### 3. Tạo mẫu KPI
+
+Dùng **KPI Templates** để tạo bộ KPI sẵn cho từng vị trí.
+
+Ví dụ: Mẫu KPI cho Nhân viên kinh doanh gồm 4 chỉ số với trọng số khác nhau.
+
+## Kỳ KPI (KPI Periods)
+
+Kỳ KPI là khoảng thời gian đánh giá (tháng/quý/năm).
+
+Trạng thái thường gặp:
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| open | Kỳ mới mở, đang chuẩn bị giao KPI |
+| evaluating | Đang theo dõi và chấm KPI |
+| approved | Đã duyệt kết quả kỳ |
+| closed | Kỳ đã đóng, không thao tác tiếp |
+
+Luồng thao tác phổ biến:
+
+```text
+open -> evaluating -> approved -> closed
+```
+
+Lưu ý:
+
+- Nên chỉ duyệt kỳ khi đã rà soát xong kết quả của toàn bộ nhân viên.
+- Kỳ đã đóng thì không nên chỉnh sửa lại dữ liệu.
+
+## Giao KPI (Assignments)
+
+### Dashboard KPI
+
+Đây là màn hình làm việc chính của quản lý. Bạn có thể:
+
+- lọc theo kỳ, nhân viên, trạng thái
+- tạo KPI cho từng nhân viên
+- giao hàng loạt cho nhiều nhân viên
+- duyệt từng người hoặc duyệt hàng loạt
+
+### Trạng thái assignment
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| draft | Mới tạo, chưa giao cho nhân viên |
+| submitted | Đã giao cho nhân viên |
+| self_review | Nhân viên đang tự đánh giá |
+| reviewing | Quản lý đang xem xét |
+| approved | Đã duyệt |
+| rejected | Cần chỉnh lại |
+
+Luồng làm việc dễ hiểu:
+
+1. Quản lý tạo KPI ở trạng thái nháp.
+2. Quản lý giao KPI cho nhân viên.
+3. Nhân viên cập nhật kết quả thực hiện.
+4. Quản lý duyệt hoặc yêu cầu chỉnh sửa.
+5. Chốt kết quả kỳ.
+
+## Nhập actual và tính điểm
+
+### Màn hình KPI Results
+
+Màn hình này dùng khi bạn cần chấm điểm nhanh cho nhiều nhân viên trong cùng kỳ.
+
+Bạn có thể:
+
+- nhập/cập nhật kết quả thực tế của từng chỉ số
+- lưu hàng loạt
+- chạy tính điểm hàng loạt
+
+### Kết quả hiển thị
+
+Sau khi tính điểm, hệ thống hiển thị:
+
+- phần trăm hoàn thành
+- điểm theo từng chỉ số
+- điểm tổng hợp
+- xếp loại tổng quan
+
+## Giao KPI hàng loạt
+
+Dùng **Bulk Assign** khi cần giao cùng một mẫu KPI cho nhiều người.
+
+3 bước thao tác:
+
+1. Chọn kỳ KPI + template
+2. Chọn danh sách nhân viên áp dụng
+3. Xác nhận và tạo assignment hàng loạt
+
+## My KPI
+
+Nhân viên dùng **My KPI** để:
+
+- xem KPI của bản thân
+- theo dõi tiến độ hoàn thành
+- cập nhật kết quả theo từng chỉ tiêu
+- theo dõi trạng thái duyệt
+
+## KPI Payroll (liên kết KPI với lương)
+
+Nếu doanh nghiệp có dùng KPI để tính thưởng/phạt lương, bạn thao tác ở khu vực này.
+
+Gồm 4 phần:
+
+- Rules: thiết lập quy tắc thưởng/phạt
+- Links: nối kỳ KPI với kỳ lương
+- Apply: xem trước và áp dụng
+- History: xem lịch sử đã áp dụng
+
+### Trạng thái link KPI-Payroll
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| pending | Mới tạo liên kết |
+| preview | Đã xem trước kết quả |
+| applied | Đã áp dụng vào lương |
+| skipped | Bỏ qua liên kết |
+
+## Lỗi thường gặp và lưu ý vận hành
+
+- Không thấy KPI của bản thân: liên hệ quản trị để kiểm tra tài khoản đã gắn đúng hồ sơ nhân viên chưa.
+- Không thể sửa KPI: thường do kỳ KPI đã duyệt hoặc đã đóng.
+- Không thể duyệt hàng loạt: kiểm tra các bản ghi đang ở đúng trạng thái chờ duyệt.
+- Trước khi áp KPI vào lương, luôn nên chạy xem trước để kiểm tra tác động thưởng/phạt.

@@ -1,0 +1,95 @@
+---
+title: Quản lý người dùng
+---
+
+# Quản lý người dùng
+
+## Tổng quan
+
+Trang Users giúp quản trị vòng đời tài khoản nội bộ: tạo mới, cập nhật thông tin, gán vai trò và hỗ trợ đặt lại mật khẩu.
+
+## Truy cập chức năng
+
+Vào System -> Users.
+
+Bạn có thể:
+
+- xem danh sách người dùng
+- tìm kiếm theo tên/email/tài khoản
+- tạo người dùng mới
+- chỉnh sửa thông tin người dùng
+- xóa người dùng (theo chính sách nội bộ)
+- reset mật khẩu cho người dùng
+
+## Danh sách và bộ lọc
+
+### Cột thường gặp
+
+| Cột | Ý nghĩa |
+|---|---|
+| Tài khoản | Tên đăng nhập |
+| Họ tên | Tên hiển thị người dùng |
+| Email/SĐT | Thông tin liên hệ |
+| Vai trò | Vai trò đang được gán |
+| Trạng thái | Hoạt động/tạm dừng |
+
+### Tìm kiếm
+
+- nhập từ khóa vào ô tìm kiếm
+- kết quả tự cập nhật theo từ khóa
+
+## Tạo người dùng mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Username | ✅ | Không trùng |
+| Họ tên | ✅ | Tên hiển thị |
+| Email | ✅ | Dùng cho liên hệ và khôi phục |
+| Số điện thoại | | Tuỳ chọn |
+| Vai trò | ✅ | Có thể gán 1 hoặc nhiều vai trò theo chính sách |
+
+### Các bước thao tác nhanh
+
+1. Nhấn Thêm người dùng.
+2. Nhập thông tin cơ bản.
+3. Gán vai trò phù hợp.
+4. Lưu và kiểm tra đăng nhập thử.
+
+## Chỉnh sửa và xóa người dùng
+
+- Chỉnh sửa: cập nhật thông tin hồ sơ hoặc vai trò.
+- Xóa: chỉ thực hiện khi tài khoản không còn dùng.
+
+Khuyến nghị: trước khi xóa, rà soát người dùng có còn liên quan dữ liệu vận hành không.
+
+## Reset mật khẩu
+
+Dùng chức năng reset mật khẩu khi:
+
+- người dùng quên mật khẩu
+- cần xử lý sự cố đăng nhập
+- cần đổi mật khẩu bắt buộc theo chính sách bảo mật
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| users.read | Xem danh sách/chi tiết người dùng |
+| users.create | Tạo người dùng |
+| users.update | Chỉnh sửa người dùng |
+| users.delete | Xóa người dùng |
+| users.assign_role | Gán vai trò cho người dùng |
+| users.reset_password | Đặt lại mật khẩu |
+
+Gợi ý phân quyền:
+
+- Nhân sự IT vận hành: read, create, update
+- Quản trị hệ thống: thêm assign_role, reset_password, delete
+
+## Lỗi thường gặp và cách xử lý
+
+- Không tạo được user: kiểm tra username/email đã tồn tại chưa.
+- Không gán được vai trò: kiểm tra quyền `users.assign_role`.
+- Không reset được mật khẩu: kiểm tra quyền `users.reset_password`.

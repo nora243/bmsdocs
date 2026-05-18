@@ -1,0 +1,207 @@
+---
+title: Nghỉ phép
+---
+
+# Nghỉ phép
+
+## Tổng quan
+
+Trang này hướng dẫn thao tác nghỉ phép cho người dùng cuối và quản lý phê duyệt.
+
+Mục tiêu:
+
+- nhân viên gửi đơn nghỉ đúng quy trình
+- quản lý duyệt/từ chối nhanh, có lý do rõ ràng
+- dữ liệu phép còn lại và dữ liệu lương được cập nhật chính xác
+
+## Vị trí trong quy trình
+
+```text
+Cấu hình loại phép -> Cấp số dư phép -> Nhân viên tạo đơn nghỉ -> Quản lý duyệt/từ chối -> Đồng bộ vào kỳ lương
+```
+
+## Truy cập chức năng
+
+Vào Staff -> Attendance -> Leave Requests.
+
+Bạn có thể:
+
+- xem danh sách đơn nghỉ
+- lọc theo nhân viên, trạng thái
+- tạo đơn nghỉ mới
+- duyệt hoặc từ chối đơn (nếu có quyền)
+- hủy hoặc xóa đơn (theo điều kiện)
+
+Để kiểm tra lượng phép còn lại và khởi tạo phép năm, vào:
+
+- Staff -> Attendance -> Leave Balances
+
+Màn hình Leave Balances dành cho HR/Admin để:
+
+- xem số dư phép chi tiết theo từng nhân viên
+- tạo/cập nhật số dư phép theo năm
+- khởi tạo số dư phép hàng loạt cho toàn bộ nhân viên
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã đơn | Mã yêu cầu nghỉ phép |
+| Nhân viên | Người gửi đơn |
+| Loại phép | Phép năm, phép không lương, ... |
+| Từ ngày / Đến ngày | Khoảng thời gian nghỉ |
+| Số ngày | Tổng ngày nghỉ |
+| Lý do | Nội dung xin nghỉ |
+| Trạng thái | pending, approved, rejected, cancelled |
+
+### Bộ lọc thường dùng
+
+- tab All: xem toàn bộ theo quyền
+- tab Pending: tập trung các đơn chờ duyệt
+- lọc theo nhân viên
+- lọc theo trạng thái (ở tab All)
+
+## Tạo đơn nghỉ phép
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Loại phép | ✅ | Chọn từ danh mục phép đang active |
+| Từ ngày | ✅ | Ngày bắt đầu nghỉ |
+| Đến ngày | ✅ | Ngày kết thúc nghỉ |
+| Nghỉ nửa ngày | | Bật nếu nghỉ nửa ngày |
+| Buổi nghỉ nửa ngày | | Sáng hoặc chiều |
+| Số ngày nghỉ | Tự tính | Hệ thống tự tính theo ngày đã chọn |
+| Người bàn giao | | Người nhận bàn giao công việc |
+| Link đính kèm | | Ví dụ giấy tờ minh chứng |
+| Lý do nghỉ | ✅ | Bắt buộc nhập |
+
+Lưu ý quan trọng:
+
+- hệ thống kiểm tra số ngày phép còn lại
+- nếu chưa có số dư phép của năm hiện tại, hệ thống có thể tự khởi tạo theo cấu hình loại phép
+
+## Các bước thao tác nhanh cho nhân viên
+
+1. Vào Leave Requests và bấm Thêm đơn nghỉ.
+2. Chọn loại phép.
+3. Chọn ngày bắt đầu và ngày kết thúc.
+4. Nhập lý do, người bàn giao (nếu có).
+5. Kiểm tra số ngày nghỉ và số dư phép còn lại.
+6. Gửi đơn.
+
+## Duyệt, từ chối, hủy, xóa
+
+### Duyệt / Từ chối (quản lý/HR)
+
+- Duyệt: chuyển đơn sang approved.
+- Từ chối: chuyển đơn sang rejected và nên ghi rõ lý do từ chối.
+
+### Hủy đơn (nhân viên)
+
+- chỉ hủy được đơn của chính mình
+- chỉ hủy được khi đơn đang pending
+
+### Xóa đơn
+
+- chỉ xóa được đơn của chính mình
+- chỉ xóa được khi trạng thái là pending hoặc cancelled
+
+## Trạng thái đơn nghỉ
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| pending | Chờ duyệt |
+| approved | Đã duyệt |
+| rejected | Bị từ chối |
+| cancelled | Đã hủy |
+
+## Leave Balances: kiểm tra lượng phép còn lại
+
+### Khi nào dùng
+
+- cần xem nhanh nhân viên còn bao nhiêu ngày phép
+- cần kiểm tra phép đã dùng, phép chờ duyệt trước khi duyệt đơn nghỉ
+- cần chuẩn bị dữ liệu phép đầu năm cho toàn bộ công ty
+
+### Cách kiểm tra số dư phép của nhân viên
+
+1. Vào Staff -> Attendance -> Leave Balances.
+2. Chọn nhân viên.
+3. Chọn năm cần kiểm tra.
+4. Xem bảng số dư theo từng loại phép.
+
+### Ý nghĩa các cột chính trong Leave Balances
+
+| Cột | Ý nghĩa |
+|---|---|
+| Entitled | Số ngày phép được cấp trong năm |
+| Carried over | Số ngày phép chuyển từ năm trước |
+| Bonus | Số ngày phép cộng thêm |
+| Used | Số ngày phép đã sử dụng |
+| Pending | Số ngày phép đang chờ duyệt |
+| Remaining | Số ngày phép còn lại |
+
+### Điều chỉnh số dư phép
+
+Người có quyền có thể bấm **Adjust** để cập nhật các trường:
+
+- Entitled
+- Carried over
+- Bonus
+
+Khuyến nghị: chỉ điều chỉnh khi có quyết định nghiệp vụ rõ ràng (ví dụ cộng phép thâm niên, điều chỉnh sai dữ liệu đầu kỳ).
+
+## Khởi tạo phép hàng loạt cho nhân viên
+
+Mục tiêu: tạo nhanh số dư phép cho nhiều nhân viên theo một loại phép và một năm.
+
+### Thao tác
+
+1. Vào Leave Balances.
+2. Bấm **Bulk initialize balance**.
+3. Chọn loại phép.
+4. Chọn năm.
+5. Nhập số ngày phép được cấp.
+6. Xác nhận khởi tạo.
+
+Lưu ý:
+
+- hệ thống bỏ qua các bản ghi đã tồn tại (không ghi đè dữ liệu cũ)
+- sau khi khởi tạo, mở lại từng nhân viên để kiểm tra nhanh cột Remaining
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| hr_leave.read | Xem toàn bộ đơn nghỉ |
+| hr_leave.read_own | Chỉ xem đơn của bản thân |
+| hr_leave.create | Tạo đơn nghỉ |
+| hr_leave.update | Hủy đơn nghỉ (theo quy tắc) |
+| hr_leave.approve | Duyệt/từ chối đơn và quản lý số dư phép |
+| hr_leave.delete | Xóa đơn nghỉ |
+
+Gợi ý phân quyền:
+
+- Nhân viên: read_own, create, update
+- Trưởng nhóm/HR: thêm read, approve
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không tạo được đơn: kiểm tra đã chọn đủ loại phép, ngày và lý do chưa.
+- Báo thiếu ngày phép: kiểm tra số dư phép năm hiện tại.
+- Không hủy/xóa được đơn: kiểm tra trạng thái đơn có đúng điều kiện không.
+- Không thấy đơn của mình: kiểm tra tài khoản đã gắn đúng hồ sơ nhân viên chưa.
+- Không thấy số dư phép: kiểm tra đã chọn đúng nhân viên và đúng năm chưa.
+- Khởi tạo hàng loạt không tạo thêm dữ liệu: thường do nhân viên đã có số dư phép cho loại phép/năm đó.
+
+## Gợi ý vận hành
+
+- Khuyến nghị gửi đơn sớm để quản lý sắp xếp nhân sự thay thế.
+- Khi từ chối, nên ghi lý do rõ để nhân viên điều chỉnh hoặc gửi lại.
+- Trước khi chốt lương, nên xử lý hết các đơn pending.
+- Đầu mỗi năm nên chạy khởi tạo phép hàng loạt, sau đó rà soát lại các trường hợp đặc biệt để điều chỉnh thủ công.

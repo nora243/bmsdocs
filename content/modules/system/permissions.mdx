@@ -1,0 +1,87 @@
+---
+title: Quản lý quyền hạn
+---
+
+# Quản lý quyền hạn
+
+## Tổng quan
+
+Trang Permissions dùng để quản lý danh mục quyền trong hệ thống theo cấu trúc:
+
+```text
+resource.action
+```
+
+Ví dụ: `users.read`, `roles.update`, `hr_leave.approve`.
+
+## Truy cập chức năng
+
+Vào System -> Roles -> Manage Permissions hoặc mở trực tiếp trang Permissions.
+
+Bạn có thể:
+
+- xem danh sách toàn bộ quyền
+- tìm theo tên quyền hoặc resource
+- lọc theo resource
+- tạo quyền mới
+- chỉnh sửa quyền
+- xóa quyền (khi không còn dùng)
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Display name | Tên hiển thị quyền |
+| Name | Tên kỹ thuật của quyền |
+| Resource | Nhóm nghiệp vụ |
+| Action | Hành động (read/create/update/delete/approve...) |
+| Status | Trạng thái active/inactive |
+
+### Bộ lọc thường dùng
+
+- tìm theo tên quyền
+- lọc theo resource
+
+## Tạo quyền mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Name | ✅ | Theo chuẩn `resource.action` |
+| Display name | ✅ | Tên hiển thị cho quản trị |
+| Resource | ✅ | Ví dụ `users`, `roles`, `sales_orders` |
+| Action | ✅ | Ví dụ `read`, `create`, `approve` |
+| Mô tả | | Giải thích mục đích quyền |
+
+## Chỉnh sửa và xóa quyền
+
+- Chỉnh sửa khi cần chuẩn hóa tên hiển thị hoặc mô tả.
+- Xóa khi quyền không còn dùng.
+
+Lưu ý: nếu quyền đang gán cho role, hệ thống có thể chặn xóa để tránh lỗi phân quyền.
+
+## Phân quyền (cho Admin)
+
+Trong triển khai hiện tại, thao tác tạo/sửa/xóa permission yêu cầu quyền:
+
+- `users.assign_role`
+
+Ngoài ra, để xem/điều phối vai trò và quyền hiệu quả, thường cần thêm:
+
+- `roles.read`
+- `roles.update`
+
+## Lỗi thường gặp và cách xử lý
+
+- Không xóa được permission: kiểm tra quyền đang gán cho role nào.
+- Không tạo được permission: kiểm tra trùng tên `resource.action`.
+- Tạo permission xong nhưng chưa dùng được: kiểm tra đã gán permission đó vào role tương ứng chưa.
+
+## Gợi ý vận hành
+
+- Chuẩn hóa quy tắc đặt tên permission ngay từ đầu.
+- Không tạo quyền trùng ý nghĩa để tránh khó quản trị.
+- Định kỳ rà soát quyền không còn dùng để tinh gọn hệ thống.

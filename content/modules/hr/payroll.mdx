@@ -1,0 +1,230 @@
+---
+title: Lương & Bảng lương
+---
+
+# Lương & Bảng lương
+
+## Tổng quan
+
+Trang này hướng dẫn cách thao tác lương theo công việc thực tế hằng tháng.
+
+Bạn chỉ cần nhớ 6 khu vực chính:
+
+- Cấu phần lương
+- Bậc lương
+- Mẫu lương theo bậc
+- Lương nhân viên
+- Kỳ lương
+- Bảng lương
+
+Mục tiêu:
+
+- tính lương đúng và nhanh
+- kiểm soát quy trình duyệt rõ ràng
+- hạn chế sai sót khi chốt lương
+
+## Vị trí trong quy trình
+
+```text
+Thiết lập cấu phần và bậc lương -> Gán lương nhân viên -> Tạo kỳ lương -> Sinh bảng lương -> Kiểm tra và đồng bộ dữ liệu -> Duyệt -> Chi trả -> Đóng kỳ
+```
+
+## Truy cập chức năng
+
+Vào **Staff -> Payroll** với các màn hình:
+
+- Salary Components
+- Job Grades
+- Job Grade Salary Templates
+- Employee Salaries
+- Payroll Periods
+- Payrolls
+
+## 1. Cấu phần lương (Salary Components)
+
+Màn hình này dùng để tạo các khoản cộng/trừ trong lương.
+
+Ví dụ:
+
+- khoản cộng: lương cơ bản, phụ cấp, thưởng
+- khoản trừ: bảo hiểm, thuế, phạt
+
+### Nhóm cấu phần
+
+- earning: khoản cộng
+- deduction: khoản trừ
+
+### Cách thao tác
+
+1. Nhấn thêm cấu phần.
+2. Chọn loại khoản cộng hoặc khoản trừ.
+3. Nhập giá trị mặc định hoặc cách tính.
+4. Lưu và kiểm tra lại trước khi dùng cho nhân viên.
+
+## 2. Bậc lương (Job Grades)
+
+Bậc lương dùng để chuẩn hóa khung lương theo vị trí/chức danh.
+
+Ví dụ:
+
+- Nhân viên kinh doanh bậc 1
+- Nhân viên kinh doanh bậc 2
+- Trưởng nhóm kinh doanh
+
+### Khi nào nên dùng bậc lương
+
+- Doanh nghiệp có nhiều nhân viên cùng vị trí
+- Cần quản lý lương theo cấp bậc thay vì nhập tay từng người
+- Muốn dễ nâng bậc và theo dõi lịch sử điều chỉnh
+
+### Cách thao tác
+
+1. Tạo bậc lương theo từng nhóm vị trí.
+2. Gán mức lương tối thiểu/tối đa cho bậc.
+3. Kiểm tra lại tên bậc rõ ràng, dễ tra cứu.
+
+## 3. Mẫu lương theo bậc (Job Grade Salary Templates)
+
+Mẫu lương theo bậc là bộ khoản lương chuẩn gắn sẵn cho từng bậc.
+
+Nói đơn giản: thay vì nhập từng khoản cho từng nhân viên, bạn chuẩn bị sẵn mẫu cho bậc lương, sau đó áp dụng cho nhân viên thuộc bậc đó.
+
+### Mỗi mẫu thường gồm
+
+- lương cơ bản
+- phụ cấp
+- khoản thưởng mặc định (nếu có)
+- khoản khấu trừ mặc định (nếu có)
+
+### Cách thao tác
+
+1. Chọn một bậc lương.
+2. Thêm các cấu phần lương cần áp dụng cho bậc đó.
+3. Sắp xếp thứ tự hiển thị nếu cần.
+4. Lưu mẫu và kiểm tra tổng quan trước khi áp dụng diện rộng.
+
+## 4. Lương nhân viên (Employee Salaries)
+
+Màn hình này dùng để gán cấu phần lương cho từng nhân viên.
+
+### Chức năng chính
+
+- xem ai đã có lương, ai chưa có
+- xem lương hiện tại và lịch sử thay đổi
+- thêm, sửa, xóa từng dòng lương
+
+### Gợi ý thao tác an toàn
+
+1. Chọn nhân viên.
+2. Thêm đầy đủ khoản cộng/trừ cần dùng.
+3. Kiểm tra thời gian hiệu lực để tránh trùng hoặc thiếu dữ liệu.
+4. Lưu xong thì mở lại màn hình xem tổng lương để đối chiếu.
+
+## 5. Kỳ lương (Payroll Periods)
+
+Kỳ lương là tháng làm việc bạn chuẩn bị chốt lương.
+
+### Trạng thái kỳ lương
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| open | Kỳ đang mở, còn chỉnh sửa được |
+| processing | Đang xử lý dữ liệu |
+| approved | Kỳ đã duyệt |
+| paid | Đã chi trả |
+| closed | Kỳ đã đóng |
+
+### Thao tác chính trên kỳ lương
+
+- tạo kỳ lương
+- cập nhật thông tin kỳ khi còn mở
+- duyệt kỳ sau khi kiểm tra xong
+- đóng kỳ khi đã hoàn tất
+
+## 6. Bảng lương (Payrolls)
+
+Bảng lương là danh sách lương của từng nhân viên trong một kỳ.
+
+### Trạng thái payroll
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| draft | Chưa duyệt |
+| approved | Đã duyệt |
+| paid | Đã trả lương |
+
+### Các thông tin cần kiểm tra trước khi duyệt
+
+- công chuẩn và công thực tế
+- nghỉ phép, nghỉ không lương
+- tăng ca
+- tổng thu nhập
+- tổng khấu trừ
+- thực lĩnh
+
+## Luồng vận hành lương thực tế
+
+### Bước 1: Chuẩn hóa cấu hình lương
+
+Trước mỗi kỳ lương, nên rà soát:
+
+- cấu phần lương còn dùng hay không
+- bậc lương có cần điều chỉnh không
+- mẫu lương theo bậc đã đầy đủ chưa
+- nhân viên đã gán đúng bậc và đúng cấu hình chưa
+
+### Bước 2: Tạo kỳ lương
+
+Tạo kỳ theo năm/tháng, ngày bắt đầu-kết thúc, ngày trả lương, số công chuẩn.
+
+### Bước 3: Sinh bảng lương
+
+Trong kỳ đã chọn, bấm tạo bảng lương để hệ thống tạo danh sách lương nháp.
+
+Lưu ý:
+
+- nhân viên chưa cấu hình lương có thể không được sinh bảng lương
+- nhân viên đã có bảng lương kỳ đó sẽ bị bỏ qua
+
+### Bước 4: Đồng bộ công, nghỉ phép, OT
+
+Chạy đồng bộ để lấy số liệu mới nhất từ chấm công, nghỉ phép, tăng ca.
+
+- Sau bước này, bạn nên kiểm tra lại một lượt các trường công, nghỉ, tăng ca trước khi duyệt.
+
+### Bước 5: Tính PIT (thuế TNCN)
+
+Chạy tính thuế để cập nhật khoản thuế TNCN vào bảng lương.
+
+Nên kiểm tra hồ sơ người phụ thuộc của nhân viên trước khi chốt để tránh sai thuế.
+
+### Bước 6: Duyệt và chi trả
+
+- duyệt payroll từng dòng hoặc hàng loạt
+- đánh dấu đã chi trả sau khi chuyển lương
+- khi hoàn tất có thể đóng kỳ lương
+
+## Quy tắc vận hành cần nhớ
+
+- Khi kỳ đã duyệt hoặc đóng, khả năng chỉnh sửa sẽ bị hạn chế.
+- Một nhân viên chỉ nên có một bảng lương trong một kỳ.
+- Nên ưu tiên dùng bậc lương và mẫu lương theo bậc để giảm nhập tay và giảm sai sót.
+- Nên chạy theo đúng thứ tự: sinh bảng lương -> đồng bộ -> tính thuế -> duyệt -> chi trả.
+
+## KPI và lương
+
+Nếu doanh nghiệp áp dụng thưởng/phạt theo KPI, thao tác phần này tại trang [KPI](kpi).
+
+Khuyến nghị:
+
+- luôn xem trước kết quả KPI ảnh hưởng tới lương trước khi áp dụng chính thức
+- sau khi áp dụng KPI vào lương, kiểm tra lại thực lĩnh trước khi duyệt
+
+## Lỗi thường gặp và lưu ý vận hành
+
+- Bậc lương đã tạo nhưng nhân viên chưa nhận đúng cấu hình: kiểm tra nhân viên đã gán đúng bậc chưa.
+- Mẫu lương theo bậc thiếu khoản: bổ sung lại trong mẫu trước khi sinh kỳ mới.
+- Sinh bảng lương thiếu người: kiểm tra nhân viên đó đã có cấu hình lương chưa.
+- Thuế TNCN chưa đúng kỳ vọng: kiểm tra dữ liệu người phụ thuộc và các khoản chịu thuế.
+- Không sửa được bảng lương: kiểm tra kỳ lương có còn ở trạng thái đang mở không.
+- Trước khi duyệt cuối kỳ, nên rà lại các trường công, nghỉ, tăng ca và thực lĩnh.

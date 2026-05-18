@@ -1,0 +1,47 @@
+---
+title: Nhân sự
+---
+
+# Module Nhân sự
+
+## Tổng quan
+
+Module Nhân sự quản lý toàn bộ vòng đời nhân sự trong doanh nghiệp: hồ sơ nhân viên, hợp đồng, chấm công, nghỉ phép, KPI hiệu suất và tính lương.
+
+Trong phạm vi tài liệu hiện tại, hệ thống tập trung hướng dẫn sâu vào 4 nhóm nghiệp vụ:
+
+- Nghỉ phép
+- Tăng ca
+- KPI (thiết lập, giao chỉ tiêu, chấm điểm, phê duyệt)
+- Lương và bảng lương (cấu phần lương, cấu hình lương nhân viên, kỳ lương, bảng lương, đồng bộ công - OT - PIT)
+
+## Quy trình tổng quát
+
+```text
+Thiết lập cấu hình HR -> Ghi nhận dữ liệu chấm công/nghỉ phép/KPI -> Tạo kỳ lương -> Sinh bảng lương -> Duyệt/Khoá kỳ -> Chi trả
+```
+
+## Truy cập chức năng
+
+Vào **ERP/CRM -> Staff (Nhân sự)**.
+
+Thanh điều hướng HR chia nhóm chính:
+
+- Master Data: chức danh, bậc lương, cấu phần lương
+- Attendance: chấm công, nghỉ phép, tăng ca, số dư phép
+- Payroll: kỳ lương, bảng lương, lương nhân viên
+- KPI: dashboard, kỳ KPI, mẫu KPI, chỉ số, KPI-lương
+
+## Danh mục trang hướng dẫn chi tiết
+
+- [Nghỉ phép](leave): tạo đơn nghỉ phép, theo dõi trạng thái, duyệt/từ chối, hủy/xóa đơn
+- [Tăng ca](overtime): tạo đơn tăng ca, hệ số OT, duyệt/từ chối, theo dõi giờ OT
+- [KPI](kpi): quy trình đánh giá hiệu suất, trạng thái, vai trò phê duyệt, liên kết KPI với lương
+- [Lương & Bảng lương](payroll): cấu hình lương, kỳ lương, tạo bảng lương, đồng bộ công/OT/PIT, duyệt và thanh toán
+
+## Lưu ý vận hành
+
+- KPI và Payroll có liên kết qua nghiệp vụ KPI-Payroll, nhưng là 2 module thao tác độc lập.
+- Nghỉ phép và tăng ca nên được chốt sớm trước khi chạy đồng bộ kỳ lương.
+- Nên chốt dữ liệu KPI và chấm công trước khi chạy các bước đồng bộ bảng lương.
+- Trạng thái kỳ lương và kỳ KPI quyết định khả năng chỉnh sửa/xóa chứng từ liên quan.

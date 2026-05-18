@@ -1,0 +1,133 @@
+---
+title: Hóa đơn bán hàng (SIV)
+---
+
+# Hóa đơn bán hàng (SIV)
+
+## Tổng quan
+
+Hóa đơn bán hàng là chứng từ ghi nhận doanh thu và công nợ phải thu.
+
+Bạn có thể tạo hóa đơn theo 2 cách:
+
+- tạo thủ công
+- tạo từ một hoặc nhiều đơn hàng đã hoàn tất
+
+## Vị trí trong quy trình
+
+```text
+SO hoàn tất -> Tạo hóa đơn (SIV) -> Phát hành -> Theo dõi thanh toán
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Sales -> Invoices.
+
+Bạn có thể:
+
+- tạo mới và xem chi tiết hóa đơn
+- phát hành hóa đơn
+- cập nhật thông tin bổ sung
+- tải file đính kèm hóa đơn
+- theo dõi đã thu/chưa thu
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã HĐ | Mã hóa đơn |
+| Số hóa đơn | Số hóa đơn nghiệp vụ |
+| Khách hàng | Người mua |
+| Tổng tiền | Tổng giá trị hóa đơn |
+| Đã thanh toán | Số đã thu |
+| Hạn thanh toán | Ngày đến hạn |
+| Trạng thái | Trạng thái hóa đơn |
+| Thanh toán | Chưa thu, một phần, đã thu |
+
+### Bộ lọc thường dùng
+
+- tìm theo mã hóa đơn
+- lọc theo khách hàng
+- lọc theo trạng thái hóa đơn
+- lọc theo trạng thái thanh toán
+- lọc theo khoảng ngày
+
+## Tạo hóa đơn
+
+### Cách 1: Tạo thủ công
+
+Nhập khách hàng và các dòng sản phẩm trực tiếp.
+
+### Cách 2: Tạo từ SO
+
+Chọn SO đủ điều kiện để lấy dữ liệu lên hóa đơn.
+
+Khuyến nghị: ưu tiên cách này để dữ liệu liên kết chặt chẽ và giảm sai sót.
+
+## Các bước thao tác nhanh
+
+1. Chọn cách tạo hóa đơn (thủ công hoặc từ SO).
+2. Kiểm tra thông tin khách hàng.
+3. Kiểm tra danh sách sản phẩm và tổng tiền.
+4. Lưu nháp.
+5. Phát hành hóa đơn.
+6. Theo dõi thanh toán đến khi hoàn tất.
+
+## Trạng thái hóa đơn
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Nháp |
+| ISSUED | Đã phát hành |
+| SENT | Đã gửi cho khách |
+| PAID | Đã thanh toán đủ |
+| CANCELLED | Đã hủy |
+| VOIDED | Đã vô hiệu |
+
+Trạng thái thanh toán thường gặp:
+
+- UNPAID: chưa thu
+- PARTIAL: đã thu một phần
+- PAID: đã thu đủ
+- OVERDUE: quá hạn
+
+## Trang chi tiết hóa đơn
+
+Tại trang chi tiết, bạn có thể:
+
+- xem thông tin hóa đơn và trạng thái thanh toán
+- xem các khoản thu đã ghi nhận
+- phát hành hóa đơn (nếu đang nháp)
+- cập nhật thông tin bổ sung và file đính kèm
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| sales_invoices.read | Xem danh sách và chi tiết hóa đơn |
+| sales_invoices.create | Tạo hóa đơn |
+| sales_invoices.update | Sửa thông tin hóa đơn |
+| sales_invoices.delete | Xóa hóa đơn theo điều kiện |
+| sales_invoices.approve | Phát hành hóa đơn |
+| sales_invoices.payment | Thao tác thanh toán/công nợ |
+| sales_invoices.export | Xuất dữ liệu hóa đơn |
+
+Gợi ý phân quyền:
+
+- Nhân viên kế toán bán hàng: read, create, update
+- Kế toán trưởng/Trưởng bộ phận: thêm approve, payment
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không phát hành được hóa đơn: kiểm tra hóa đơn đang ở trạng thái nháp và thông tin bắt buộc đã đủ.
+- Không xóa được hóa đơn: kiểm tra hóa đơn đã có thanh toán chưa.
+- Chênh lệch số tiền: kiểm tra lại chiết khấu/thuế ở từng dòng sản phẩm.
+
+## Gợi ý vận hành
+
+- Nên phát hành sau khi xác nhận lại lần cuối thông tin thuế và tổng tiền.
+- Luôn đính kèm file hóa đơn để tiện đối soát.
+- Theo dõi công nợ ngay sau khi phát hành để tránh quá hạn.

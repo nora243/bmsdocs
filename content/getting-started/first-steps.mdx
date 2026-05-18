@@ -1,0 +1,97 @@
+---
+title: Cấu hình khởi tạo
+---
+
+# Cấu hình khởi tạo
+
+Trước khi bắt đầu sử dụng hệ thống, bạn cần thiết lập một số thông tin cơ bản. Truy cập **Hệ thống → Cài đặt** để bắt đầu.
+
+---
+
+## 1. Thông tin Công ty
+
+Tại tab **Thông tin Công ty**, điền đầy đủ các trường:
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Tên Công ty | ✅ | Tên đầy đủ của doanh nghiệp |
+| Mã số thuế | | Mã số thuế doanh nghiệp |
+| Email liên hệ | | Email đại diện công ty |
+| Số điện thoại | | Số điện thoại liên hệ |
+| Địa chỉ | | Địa chỉ trụ sở chính |
+| Quốc gia | | Mặc định: Vietnam |
+
+> **💡 Lưu ý:** Các thông tin này sẽ được in tự động trên các phiếu xuất kho, phiếu nhập kho, đơn mua hàng, hóa đơn bán hàng và các mẫu in khác trong hệ thống. Khuyến khích nhập đầy đủ để đảm bảo chứng từ đạt yêu cầu pháp lý và chuyên nghiệp.
+
+Sau khi điền xong, nhấn **Lưu thông tin công ty**.
+
+---
+
+## 2. Thêm Chi nhánh
+
+Nếu doanh nghiệp có nhiều chi nhánh, chuyển sang tab **Chi nhánh** và nhấn **Thêm chi nhánh**. Mỗi chi nhánh cần điền:
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Mã Chi nhánh | ✅ | Mã định danh duy nhất (VD: CN-HCM) |
+| Tên Chi nhánh | ✅ | Tên hiển thị của chi nhánh |
+| Số điện thoại | | Số điện thoại chi nhánh |
+| Email liên hệ | | Email chi nhánh |
+| Địa chỉ | | Số nhà, tên đường |
+| Phường/Xã | | Phường hoặc xã |
+| Quận/Huyện | | Quận hoặc huyện |
+| Tỉnh/Thành phố | | Tỉnh hoặc thành phố |
+| Quốc gia | | Quốc gia |
+| Trụ sở chính | | Bật nếu đây là trụ sở chính |
+
+---
+
+## 3. Cài đặt Chấm công
+
+Chuyển sang tab **Chấm công**, nhấn **Thêm văn phòng** để cấu hình địa điểm chấm công. Mỗi văn phòng hỗ trợ các tùy chọn sau:
+
+### Các trường cấu hình văn phòng
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Tên Văn phòng | ✅ | Tên hiển thị (VD: Văn phòng HCM) |
+| Danh sách IP cho phép | | Danh sách IP/CIDR được phép chấm công |
+| Chế độ xác minh | ✅ | Phương thức xác thực vị trí (xem chi tiết bên dưới) |
+| Vĩ độ (Latitude) | | Tọa độ GPS của văn phòng |
+| Kinh độ (Longitude) | | Tọa độ GPS của văn phòng |
+| Bán kính cho phép (mét) | | Khoảng cách tối đa tính từ tọa độ GPS (mặc định 200m) |
+| Yêu cầu ảnh selfie | | Bắt buộc nhân viên chụp ảnh selfie khi chấm công |
+
+### Chế độ xác minh
+
+Hệ thống cung cấp 4 chế độ xác minh:
+
+#### Chỉ IP
+Hệ thống kiểm tra nhân viên phải chấm công từ đúng địa chỉ IP của mạng công ty.
+
+> **⚠️ Yêu cầu bắt buộc:** Công ty **phải có IP tĩnh (Static IP)** khi sử dụng chế độ này. IP động (Dynamic IP) sẽ thay đổi định kỳ khiến nhân viên không thể chấm công.
+>
+> **Cách lấy IP public của mạng công ty:**
+> 1. Kết nối vào mạng WiFi hoặc LAN của công ty.
+> 2. Truy cập [https://whatismyip.com](https://whatismyip.com) hoặc tìm kiếm **"my ip"** trên Google.
+> 3. Địa chỉ IP hiển thị chính là IP public của mạng — sao chép và dán vào trường **Danh sách IP cho phép**.
+> 4. Liên hệ nhà cung cấp dịch vụ Internet (ISP) để đăng ký IP tĩnh nếu chưa có.
+
+#### Chỉ GPS
+Hệ thống kiểm tra nhân viên phải ở trong bán kính cho phép xung quanh tọa độ văn phòng.
+
+> **Cách lấy tọa độ GPS của văn phòng:**
+> 1. Mở [Google Maps](https://maps.google.com) trên trình duyệt.
+> 2. Tìm kiếm địa chỉ văn phòng hoặc di chuyển bản đồ đến đúng vị trí.
+> 3. Nhấp chuột phải vào vị trí văn phòng trên bản đồ.
+> 4. Một menu ngữ cảnh xuất hiện — dòng đầu tiên hiển thị hai số dạng `10.7769, 106.7009`.
+>    - Số đầu tiên là **Vĩ độ (Latitude)**.
+>    - Số thứ hai là **Kinh độ (Longitude)**.
+> 5. Nhấp vào tọa độ để sao chép, sau đó dán vào các trường tương ứng trong form.
+> 6. Thiết lập **Bán kính cho phép** phù hợp với diện tích văn phòng (thông thường 50–200 mét).
+
+#### IP hoặc GPS (1 trong 2)
+Nhân viên chỉ cần thỏa mãn **một trong hai** điều kiện: đúng IP **hoặc** trong phạm vi GPS. Phù hợp với công ty có cả nhân viên làm tại văn phòng lẫn làm từ xa.
+
+#### Cả IP và GPS (bắt buộc cả hai)
+Nhân viên phải thỏa mãn **đồng thời** cả IP đúng **và** trong phạm vi GPS. Áp dụng khi cần kiểm soát chấm công chặt chẽ nhất.

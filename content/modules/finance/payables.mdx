@@ -1,0 +1,228 @@
+---
+title: Công nợ phải trả (AP)
+---
+
+# Công nợ phải trả (AP)
+
+## Tổng quan
+
+Công nợ phải trả giúp bạn theo dõi số tiền còn phải thanh toán cho nhà cung cấp, các khoản đã chi và các hóa đơn mua đang đến hạn hoặc quá hạn.
+
+Trong hệ thống, phần này được chia thành 3 màn hình chính:
+
+- sổ công nợ phải trả
+- tuổi nợ phải trả
+- phiếu chi nhà cung cấp
+
+## Vị trí trong quy trình
+
+```text
+Đơn mua (PO) -> Hóa đơn mua (PI) -> Công nợ phải trả -> Phiếu chi -> Đối soát nhà cung cấp
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Công nợ.
+
+Trong thanh điều hướng của module công nợ, bạn sẽ thấy:
+
+- Sổ công nợ phải trả
+- Tuổi nợ phải trả
+- Phiếu chi
+
+Bạn có thể dùng các màn hình này để:
+
+- xem từng bút toán tăng giảm công nợ với nhà cung cấp
+- theo dõi khoản nào sắp đến hạn thanh toán
+- lập phiếu chi và phân bổ vào hóa đơn mua
+- duyệt và xác nhận đã thanh toán
+- theo dõi số tiền chưa phân bổ
+
+## Sổ công nợ phải trả
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Nhà cung cấp | Tên và mã nhà cung cấp |
+| Loại giao dịch | Hóa đơn, thanh toán, ghi nợ, điều chỉnh, số dư đầu kỳ |
+| Ngày giao dịch | Ngày phát sinh bút toán |
+| Mã chứng từ | Mã hóa đơn mua, phiếu chi hoặc chứng từ liên quan |
+| Phát sinh nợ | Khoản làm giảm công nợ phải trả |
+| Phát sinh có | Khoản làm tăng công nợ phải trả |
+| Số dư | Số dư công nợ tại thời điểm bút toán |
+| Hạn thanh toán | Ngày đến hạn thanh toán |
+| Quá hạn | Trạng thái và số ngày quá hạn |
+
+### Bộ lọc thường dùng
+
+- lọc theo nhà cung cấp
+- lọc theo loại giao dịch
+- lọc theo khoảng ngày
+- chỉ hiện các khoản quá hạn
+
+### Ý nghĩa các loại giao dịch
+
+| Loại giao dịch | Khi nào xuất hiện |
+|---|---|
+| INVOICE | Khi phát sinh nghĩa vụ thanh toán từ hóa đơn mua |
+| PAYMENT | Khi xác nhận đã thanh toán phiếu chi |
+| DEBIT_NOTE | Khi có chứng từ làm giảm công nợ phải trả |
+| ADJUSTMENT | Khi kế toán điều chỉnh thủ công tăng/giảm nợ |
+| OPENING | Số dư đầu kỳ khi khởi tạo dữ liệu |
+
+### Điều chỉnh công nợ
+
+Nếu người dùng có quyền điều chỉnh, nút Điều chỉnh sẽ xuất hiện ngay trên sổ công nợ phải trả.
+
+Chức năng này dùng để:
+
+- bổ sung bút toán điều chỉnh đặc biệt
+- xử lý chênh lệch sau đối chiếu với nhà cung cấp
+- cập nhật số dư trong các tình huống ngoại lệ
+
+Khuyến nghị: ưu tiên xử lý qua hóa đơn mua, phiếu chi hoặc chứng từ gốc trước khi dùng điều chỉnh.
+
+## Tuổi nợ phải trả
+
+Màn hình này gom công nợ theo từng nhà cung cấp và chia ra các nhóm tuổi nợ:
+
+- chưa đến hạn
+- 1 đến 30 ngày
+- 31 đến 60 ngày
+- 61 đến 90 ngày
+- trên 90 ngày
+
+Mỗi dòng thể hiện:
+
+- nhà cung cấp
+- thanh màu thể hiện cơ cấu tuổi nợ
+- số tiền ở từng nhóm tuổi nợ
+- tổng công nợ phải trả hiện tại
+
+### Khi nào nên dùng tuổi nợ
+
+- khi lập kế hoạch thanh toán tuần hoặc tháng
+- khi cần ưu tiên các khoản sắp đến hạn
+- khi cần theo dõi nhà cung cấp đang có công nợ lớn hoặc quá hạn lâu
+
+## Phiếu chi nhà cung cấp
+
+Phiếu chi dùng để ghi nhận kế hoạch và kết quả thanh toán cho nhà cung cấp.
+
+Khác với phiếu thu, phiếu chi có quy trình 2 bước rõ ràng:
+
+- duyệt phiếu chi
+- xác nhận đã thanh toán
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã phiếu chi | Mã chứng từ chi tiền |
+| Nhà cung cấp | Đối tượng nhận tiền |
+| Ngày thanh toán | Ngày dự kiến hoặc ngày thực hiện |
+| Phương thức | Chuyển khoản, tiền mặt... |
+| Số tiền | Tổng tiền trên phiếu chi |
+| Đã phân bổ | Số tiền đã gán vào hóa đơn mua |
+| Chưa phân bổ | Số tiền còn treo, chưa gán vào hóa đơn |
+| Trạng thái | Nháp, đã duyệt, đã thanh toán, đã hủy |
+
+### Bộ lọc thường dùng
+
+- lọc theo nhà cung cấp
+- lọc theo trạng thái phiếu chi
+- lọc theo khoảng ngày
+
+### Trạng thái phiếu chi
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Phiếu mới tạo, còn được sửa hoặc xóa |
+| APPROVED | Phiếu đã được duyệt, chờ thực hiện thanh toán |
+| PAID | Đã xác nhận thanh toán xong |
+| CANCELLED | Phiếu đã hủy |
+
+### Thông tin cần nhập khi tạo phiếu chi
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Nhà cung cấp | ✅ | Chọn đúng đối tượng nhận tiền |
+| Ngày thanh toán | ✅ | Ngày dự kiến hoặc ngày thực hiện |
+| Số tiền | ✅ | Tổng số tiền chi |
+| Phương thức thanh toán | | Tiền mặt, chuyển khoản... |
+| Tài khoản chi tiền | | Tài khoản ngân hàng công ty |
+| Mã tham chiếu giao dịch | | Số lệnh chuyển khoản hoặc chứng từ |
+| Ghi chú | | Nội dung hiển thị trên phiếu |
+| Ghi chú nội bộ | | Ghi chú nội bộ của kế toán |
+
+### Phân bổ hóa đơn (rất quan trọng)
+
+Sau khi chọn nhà cung cấp, hệ thống tải danh sách hóa đơn mua còn mở để bạn phân bổ số tiền chi.
+
+Bạn có thể:
+
+- nhập tay số tiền phân bổ cho từng hóa đơn
+- dùng tự động phân bổ theo FIFO
+- lọc chỉ hóa đơn quá hạn
+- lọc chỉ hóa đơn đã được phân bổ
+
+Ý nghĩa vận hành:
+
+- phiếu chi chỉ thực sự tác động đến công nợ khi được xác nhận đã thanh toán
+- số chưa phân bổ vẫn được giữ lại để xử lý tiếp
+- khi xác nhận thanh toán, sổ công nợ và trạng thái thanh toán của hóa đơn mua liên quan sẽ được cập nhật
+
+## Các bước thao tác nhanh
+
+1. Vào ERP -> Công nợ -> Phiếu chi.
+2. Nhấn Tạo phiếu chi.
+3. Chọn nhà cung cấp và nhập số tiền chi.
+4. Phân bổ số tiền vào các hóa đơn mua cần thanh toán.
+5. Lưu phiếu ở trạng thái nháp.
+6. Duyệt phiếu chi.
+7. Sau khi đã chuyển tiền hoặc chi tiền thực tế, nhấn xác nhận đã thanh toán.
+8. Quay lại Sổ công nợ hoặc Tuổi nợ để kiểm tra số dư mới.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| ap_ledger.read | Xem sổ công nợ phải trả và tuổi nợ phải trả |
+| ap_ledger.read_own | Chỉ xem bút toán công nợ do mình tạo |
+| ap_ledger.adjust | Tạo bút toán điều chỉnh công nợ phải trả |
+| ap_ledger.export | Xuất dữ liệu sổ công nợ phải trả |
+| supplier_payments.read | Xem danh sách và chi tiết phiếu chi |
+| supplier_payments.read_own | Chỉ xem phiếu chi do mình tạo |
+| supplier_payments.create | Tạo phiếu chi mới |
+| supplier_payments.update | Sửa phiếu chi ở trạng thái nháp |
+| supplier_payments.delete | Xóa phiếu chi ở trạng thái nháp |
+| supplier_payments.approve | Duyệt phiếu chi từ DRAFT sang APPROVED |
+| supplier_payments.pay | Xác nhận phiếu chi đã thanh toán |
+| supplier_payments.cancel | Hủy phiếu chi |
+| debit_notes.read | Xem phiếu ghi nợ nhà cung cấp |
+| debit_notes.create | Tạo phiếu ghi nợ nhà cung cấp |
+| debit_notes.issue | Phát hành phiếu ghi nợ để giảm công nợ phải trả |
+| ap_reconciliations.read | Xem phiếu đối soát công nợ phải trả |
+| ap_reconciliations.create | Tạo phiếu đối soát công nợ phải trả |
+| ap_reconciliations.send | Gửi đối soát cho nhà cung cấp |
+
+Gợi ý phân quyền:
+
+- Nhân viên kế toán thanh toán: ap_ledger.read, supplier_payments.read, supplier_payments.create, supplier_payments.update
+- Người duyệt thanh toán hoặc kế toán trưởng: thêm supplier_payments.approve, supplier_payments.pay, supplier_payments.cancel
+- Admin: cấp đầy đủ theo nhu cầu vận hành, bao gồm điều chỉnh công nợ và đối soát
+
+## Lỗi thường gặp và cách xử lý
+
+- Không duyệt được phiếu chi: kiểm tra người dùng đã có quyền `supplier_payments.approve` chưa.
+- Không xác nhận được đã thanh toán: kiểm tra phiếu đã ở trạng thái APPROVED và người dùng có quyền `supplier_payments.pay`.
+- Không thấy hóa đơn để phân bổ: kiểm tra đúng nhà cung cấp và hóa đơn còn dư nợ hay không.
+- Số tiền chưa phân bổ còn lớn: kiểm tra đã chọn đủ hóa đơn cần thanh toán chưa.
+
+## Gợi ý vận hành
+
+- Nên tách rõ người lập phiếu chi và người duyệt phiếu chi để kiểm soát nội bộ tốt hơn.
+- Chỉ xác nhận đã thanh toán khi tiền đã thực sự đi ra khỏi quỹ hoặc ngân hàng.
+- Theo dõi Tuổi nợ phải trả để ưu tiên các khoản sắp đến hạn.
+- Dùng phiếu ghi nợ hoặc điều chỉnh đúng tình huống, tránh ghi tay trực tiếp làm khó đối soát sau này.

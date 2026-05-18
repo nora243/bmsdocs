@@ -1,0 +1,137 @@
+---
+title: Trả hàng bán (SR)
+---
+
+# Trả hàng bán (SR)
+
+## Tổng quan
+
+Trả hàng bán dùng để ghi nhận hàng khách trả lại sau khi đã nhận hàng.
+
+Phiếu SR giúp bạn quản lý đồng thời 2 việc:
+
+- xử lý hàng trả về kho
+- xử lý tài chính liên quan (hoàn tiền/ghi nhận bù trừ)
+
+## Vị trí trong quy trình
+
+```text
+SO đã giao hàng -> Tạo phiếu trả hàng (SR) -> Duyệt/Từ chối -> Nhập lại kho -> Hoàn tiền hoặc ghi có
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Sales -> Returns.
+
+Bạn có thể:
+
+- tạo phiếu trả hàng từ đơn bán
+- xem và chỉnh sửa phiếu trước khi duyệt
+- duyệt hoặc từ chối phiếu
+- theo dõi trạng thái nhập kho và hoàn tiền
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã phiếu | Mã SR |
+| Mã đơn hàng | SO liên kết |
+| Khách hàng | Người mua trả hàng |
+| Ngày trả | Ngày phát sinh trả hàng |
+| Lý do/Loại | Nguyên nhân và loại trả |
+| Tổng trả | Giá trị hàng trả |
+| Hoàn tiền | Số tiền dự kiến/đã hoàn |
+| Trạng thái | Tình trạng xử lý |
+
+### Bộ lọc thường dùng
+
+- tìm theo mã phiếu hoặc khách hàng
+- lọc theo trạng thái
+- lọc theo lý do trả hàng
+- lọc theo loại trả (toàn bộ/một phần)
+- lọc theo khoảng ngày
+
+## Điều kiện tạo phiếu trả
+
+- phải chọn đơn hàng nguồn (SO)
+- đơn hàng nguồn phải ở trạng thái đã xuất/giao phù hợp
+- phải có ít nhất 1 sản phẩm được trả
+
+## Tạo phiếu trả hàng
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| SO liên kết | ✅ | Đơn hàng nguồn |
+| Ngày trả | | Mặc định ngày hiện tại |
+| Lý do trả | ✅ | Bắt buộc để theo dõi nghiệp vụ |
+| Loại trả | | Toàn bộ hoặc một phần |
+| Hướng xử lý | | Hoàn tiền, đổi hàng, ghi có... |
+| Kho nhận hàng trả | | Kho nhập lại hàng |
+| Ghi chú | | Mô tả thêm tình trạng hàng |
+
+### Dòng hàng trả
+
+- nhập số lượng khách trả
+- ghi rõ tình trạng hàng
+- chọn phương án xử lý (nhập lại, hủy, sửa...)
+
+## Các bước thao tác nhanh
+
+1. Chọn SO cần trả hàng.
+2. Chọn sản phẩm và số lượng trả.
+3. Nhập lý do trả và hướng xử lý.
+4. Lưu phiếu.
+5. Duyệt hoặc từ chối theo kết quả kiểm tra thực tế.
+6. Theo dõi nhập lại kho và hoàn tiền.
+
+## Trạng thái phiếu trả
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| PENDING | Chờ duyệt |
+| APPROVED | Đã duyệt |
+| RECEIVED | Đã nhận hàng trả |
+| REFUNDED | Đã hoàn tiền |
+| REJECTED | Từ chối |
+| COMPLETED | Hoàn thành toàn bộ |
+
+## Trang chi tiết SR
+
+Tại trang chi tiết, bạn có thể:
+
+- xem thông tin khách hàng, SO và lý do trả
+- xem tổng tiền trả và số tiền hoàn
+- duyệt hoặc từ chối phiếu
+- theo dõi chứng từ nhập kho liên quan
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| sales_returns.read | Xem danh sách và chi tiết SR |
+| sales_returns.create | Tạo phiếu trả hàng |
+| sales_returns.update | Chỉnh sửa phiếu trả |
+| sales_returns.delete | Xóa phiếu trả theo điều kiện |
+| sales_returns.approve | Duyệt/từ chối phiếu trả |
+
+Gợi ý phân quyền:
+
+- Nhân viên CSKH/Sales: create, read
+- Trưởng nhóm/Quản lý: thêm update, approve
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không tạo được phiếu trả: kiểm tra SO nguồn có đủ điều kiện trả hàng chưa.
+- Không duyệt được phiếu: kiểm tra trạng thái hiện tại và quyền duyệt.
+- Số lượng trả bị báo vượt: kiểm tra lịch sử trả trước đó của cùng đơn hàng.
+
+## Gợi ý vận hành
+
+- Luôn ghi rõ lý do trả hàng để dễ tổng hợp chất lượng dịch vụ.
+- Kiểm tra tình trạng hàng thực tế trước khi duyệt hoàn tiền.
+- Với trả hàng một phần, đối chiếu kỹ số lượng đã giao, đã trả và còn lại.

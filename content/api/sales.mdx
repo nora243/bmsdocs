@@ -1,0 +1,62 @@
+---
+title: API Bán hàng
+---
+
+# API Bán hàng
+
+## Đơn hàng (Sales Orders)
+
+### Danh sách SO
+
+```http
+GET /api/v1/sales/orders?page=1&limit=20&status=confirmed
+```
+
+### Tạo SO
+
+```http
+POST /api/v1/sales/orders
+Content-Type: application/json
+
+{
+  "customer_id": 1,
+  "warehouse_id": 1,
+  "delivery_date": "2026-06-01",
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 10,
+      "unit_price": 200000
+    }
+  ]
+}
+```
+
+### Xác nhận SO
+
+```http
+PATCH /api/v1/sales/orders/:id/confirm
+```
+
+---
+
+## Xuất kho (Delivery Orders)
+
+### Tạo phiếu xuất kho từ SO
+
+```http
+POST /api/v1/sales/delivery-orders
+Content-Type: application/json
+
+{
+  "sales_order_id": 1,
+  "warehouse_id": 1,
+  "delivery_date": "2026-05-17",
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 10
+    }
+  ]
+}
+```

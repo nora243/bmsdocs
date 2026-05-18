@@ -1,0 +1,220 @@
+---
+title: Công nợ phải thu (AR)
+---
+
+# Công nợ phải thu (AR)
+
+## Tổng quan
+
+Công nợ phải thu giúp bạn theo dõi số tiền khách hàng còn nợ, các khoản đã thu và các hóa đơn đang quá hạn.
+
+Trong hệ thống, phần này được chia thành 3 màn hình chính:
+
+- sổ công nợ phải thu
+- tuổi nợ phải thu
+- phiếu thu khách hàng
+
+## Vị trí trong quy trình
+
+```text
+Đơn hàng bán (SO) -> Hóa đơn bán hàng (SIV) -> Công nợ phải thu -> Phiếu thu -> Đối soát / nhắc nợ
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Công nợ.
+
+Trong thanh điều hướng của module công nợ, bạn sẽ thấy:
+
+- Sổ công nợ phải thu
+- Tuổi nợ phải thu
+- Phiếu thu
+
+Bạn có thể dùng các màn hình này để:
+
+- xem từng bút toán tăng giảm công nợ
+- theo dõi khách hàng nào đang quá hạn
+- tạo và xác nhận phiếu thu
+- phân bổ tiền thu vào các hóa đơn còn mở
+- theo dõi số còn chưa phân bổ
+
+## Sổ công nợ phải thu
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Khách hàng | Tên và mã khách hàng |
+| Loại giao dịch | Hóa đơn, thanh toán, ghi có, điều chỉnh, số dư đầu kỳ |
+| Ngày giao dịch | Ngày phát sinh bút toán |
+| Mã chứng từ | Mã hóa đơn, phiếu thu hoặc chứng từ liên quan |
+| Phát sinh nợ | Khoản làm tăng công nợ phải thu |
+| Phát sinh có | Khoản làm giảm công nợ phải thu |
+| Số dư | Số dư công nợ tại thời điểm bút toán |
+| Hạn thanh toán | Ngày đến hạn của khoản nợ |
+| Quá hạn | Trạng thái và số ngày quá hạn |
+
+### Bộ lọc thường dùng
+
+- lọc theo khách hàng
+- lọc theo loại giao dịch
+- lọc theo khoảng ngày
+- chỉ hiện các khoản quá hạn
+
+### Ý nghĩa các loại giao dịch
+
+| Loại giao dịch | Khi nào xuất hiện |
+|---|---|
+| INVOICE | Khi phát sinh công nợ từ hóa đơn bán hàng |
+| PAYMENT | Khi xác nhận phiếu thu của khách hàng |
+| CREDIT_NOTE | Khi có khoản ghi giảm công nợ |
+| ADJUSTMENT | Khi kế toán điều chỉnh thủ công tăng/giảm nợ |
+| OPENING | Số dư đầu kỳ khi khởi tạo dữ liệu |
+
+### Điều chỉnh công nợ
+
+Nếu người dùng có quyền điều chỉnh, nút Điều chỉnh sẽ xuất hiện ngay trên sổ công nợ.
+
+Mục đích của chức năng này là:
+
+- tăng hoặc giảm số dư trong các trường hợp nghiệp vụ đặc biệt
+- bổ sung bút toán thủ công khi cần chốt số liệu
+- xử lý chênh lệch sau đối soát
+
+Khuyến nghị: chỉ dùng điều chỉnh khi không thể xử lý bằng hóa đơn, phiếu thu hoặc chứng từ nghiệp vụ gốc.
+
+## Tuổi nợ phải thu
+
+Màn hình này gom công nợ theo từng khách hàng và chia ra các nhóm tuổi nợ:
+
+- chưa đến hạn
+- 1 đến 30 ngày
+- 31 đến 60 ngày
+- 61 đến 90 ngày
+- trên 90 ngày
+
+Mỗi dòng thể hiện:
+
+- khách hàng
+- thanh màu thể hiện cơ cấu tuổi nợ
+- số tiền ở từng nhóm tuổi nợ
+- tổng công nợ hiện tại
+
+### Khi nào nên dùng tuổi nợ
+
+- vào đầu tuần để xem khách nào sắp quá hạn
+- khi cần ưu tiên danh sách khách phải nhắc thu tiền
+- khi trưởng bộ phận cần nhìn nhanh chất lượng công nợ
+
+## Phiếu thu khách hàng
+
+Phiếu thu là nơi ghi nhận số tiền thực tế đã thu từ khách hàng và phân bổ số tiền đó vào các hóa đơn còn nợ.
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã phiếu | Mã phiếu thu |
+| Khách hàng | Người nộp tiền |
+| Ngày thu | Ngày nhận tiền |
+| Số tiền | Tổng số tiền thu |
+| Đã phân bổ | Số tiền đã gán vào hóa đơn |
+| Chưa phân bổ | Số tiền còn treo, chưa gán vào hóa đơn |
+| Trạng thái | Nháp, đã xác nhận, đã hủy |
+
+### Bộ lọc thường dùng
+
+- lọc theo khách hàng
+- lọc theo trạng thái phiếu thu
+- lọc theo khoảng ngày
+
+### Trạng thái phiếu thu
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Phiếu mới tạo, còn được sửa hoặc xóa |
+| CONFIRMED | Đã xác nhận, đã ghi nhận vào công nợ |
+| CANCELLED | Phiếu đã hủy |
+
+### Thông tin cần nhập khi tạo phiếu thu
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Khách hàng | ✅ | Bắt buộc chọn đúng khách trả tiền |
+| Ngày thu | ✅ | Ngày nhận tiền thực tế |
+| Số tiền | ✅ | Tổng số tiền thu |
+| Phương thức thanh toán | | Tiền mặt, chuyển khoản... |
+| Tài khoản nhận tiền | | Tài khoản ngân hàng công ty |
+| Mã tham chiếu giao dịch | | Số UNC, mã chuyển khoản |
+| Ghi chú | | Diễn giải bên ngoài |
+| Ghi chú nội bộ | | Ghi chú phục vụ kế toán nội bộ |
+
+### Phân bổ hóa đơn (rất quan trọng)
+
+Sau khi chọn khách hàng, hệ thống tải danh sách các hóa đơn còn mở để bạn phân bổ số tiền thu.
+
+Bạn có thể:
+
+- nhập tay số tiền phân bổ cho từng hóa đơn
+- dùng tự động phân bổ theo FIFO
+- lọc chỉ hóa đơn quá hạn
+- lọc chỉ các hóa đơn đã được phân bổ
+
+Ý nghĩa vận hành:
+
+- số đã phân bổ sẽ làm giảm công nợ của đúng hóa đơn liên quan
+- số chưa phân bổ vẫn được giữ trên phiếu thu để xử lý tiếp
+- khi xác nhận phiếu thu, công nợ và trạng thái thanh toán liên quan sẽ được cập nhật
+
+## Các bước thao tác nhanh
+
+1. Vào ERP -> Công nợ -> Phiếu thu.
+2. Nhấn Tạo phiếu thu.
+3. Chọn khách hàng và nhập số tiền thu.
+4. Chọn các hóa đơn cần phân bổ hoặc dùng tự động phân bổ FIFO.
+5. Kiểm tra số đã phân bổ và số còn chưa phân bổ.
+6. Lưu phiếu ở trạng thái nháp nếu cần kiểm tra lại.
+7. Xác nhận phiếu thu khi số liệu đã đúng.
+8. Quay lại Sổ công nợ hoặc Tuổi nợ để theo dõi kết quả cập nhật.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| ar_ledger.read | Xem sổ công nợ phải thu và tuổi nợ phải thu |
+| ar_ledger.read_own | Chỉ xem bút toán công nợ do mình tạo |
+| ar_ledger.adjust | Tạo bút toán điều chỉnh công nợ phải thu |
+| ar_ledger.export | Xuất dữ liệu sổ công nợ phải thu |
+| customer_receipts.read | Xem danh sách và chi tiết phiếu thu |
+| customer_receipts.read_own | Chỉ xem phiếu thu do mình tạo |
+| customer_receipts.create | Tạo phiếu thu mới |
+| customer_receipts.update | Sửa phiếu thu ở trạng thái nháp |
+| customer_receipts.delete | Xóa phiếu thu ở trạng thái nháp |
+| customer_receipts.confirm | Xác nhận phiếu thu để ghi nhận thu tiền |
+| customer_receipts.cancel | Hủy phiếu thu đã xác nhận |
+| debt_reminders.read | Xem lịch sử nhắc nợ khách hàng |
+| debt_reminders.create | Tạo và gửi nhắc nợ |
+| ar_reconciliations.read | Xem phiếu đối soát công nợ phải thu |
+| ar_reconciliations.create | Tạo phiếu đối soát công nợ phải thu |
+| ar_reconciliations.send | Gửi đối soát công nợ cho khách hàng |
+| reports.sales_debts | Xem báo cáo công nợ bán hàng |
+
+Gợi ý phân quyền:
+
+- Nhân viên thu nợ/kế toán công nợ: ar_ledger.read, customer_receipts.read, customer_receipts.create, customer_receipts.update, customer_receipts.confirm
+- Kế toán trưởng hoặc trưởng nhóm: thêm ar_ledger.adjust, customer_receipts.cancel, debt_reminders.create, ar_reconciliations.create, ar_reconciliations.send
+- Admin: cấp đầy đủ theo phạm vi doanh nghiệp cần dùng
+
+## Lỗi thường gặp và cách xử lý
+
+- Không xác nhận được phiếu thu: kiểm tra người dùng đã có quyền `customer_receipts.confirm` chưa.
+- Số tiền phân bổ vượt quá số tiền thu: giảm bớt mức phân bổ ở từng hóa đơn.
+- Không thấy hóa đơn để phân bổ: kiểm tra đúng khách hàng và hóa đơn còn dư nợ hay không.
+- Tuổi nợ vẫn cao sau khi đã thu tiền: kiểm tra phiếu thu đã ở trạng thái CONFIRMED chưa.
+
+## Gợi ý vận hành
+
+- Nên xác nhận phiếu thu ngay sau khi đã đối chiếu chứng từ ngân hàng hoặc tiền mặt.
+- Theo dõi cột Chưa phân bổ để tránh tiền thu bị treo lâu.
+- Dùng Tuổi nợ phải thu hằng tuần để ưu tiên nhắc nợ các khoản quá hạn.
+- Chỉ dùng bút toán điều chỉnh khi không còn chứng từ nghiệp vụ gốc để xử lý.

@@ -1,0 +1,43 @@
+---
+title: Bán hàng
+---
+
+# Module Bán hàng
+
+## Tổng quan
+
+Module Bán hàng giúp đội kinh doanh theo dõi toàn bộ hành trình bán hàng, từ lúc tiếp nhận nhu cầu đến khi chốt đơn, xuất hóa đơn và hoàn tất thanh toán.
+
+Mục tiêu chính:
+
+- không bỏ sót cơ hội bán hàng
+- theo dõi tình trạng từng giao dịch rõ ràng
+- đảm bảo dữ liệu giữa Sales, Kho và Kế toán luôn khớp
+
+## Quy trình
+
+```
+Yêu cầu bán hàng (SI) → Báo giá (SQ) → Đơn hàng (SO) → Xuất kho (PXK) → Hóa đơn (SIV/INV) → Thu tiền / Trả hàng (SR)
+```
+
+## Điều hướng nhanh
+
+- ERP -> Sales -> Inquiries: quản lý yêu cầu bán hàng (SI)
+- ERP -> Sales -> Quotations: quản lý báo giá (SQ)
+- ERP -> Sales -> Orders: quản lý đơn hàng bán (SO)
+- ERP -> Sales -> Invoices: quản lý hóa đơn bán hàng (SIV)
+- ERP -> Sales -> Returns: quản lý trả hàng bán (SR)
+
+## Các trang hướng dẫn chi tiết
+
+- [Yêu cầu bán hàng (SI)](./inquiries)
+- [Báo giá bán hàng (SQ)](./quotations)
+- [Đơn hàng bán (SO)](./orders)
+- [Hóa đơn bán hàng (SIV)](./invoices)
+- [Trả hàng bán (SR)](./returns)
+
+## Lưu ý vận hành
+
+- Luôn cập nhật trạng thái chứng từ ngay sau khi xử lý để pipeline phản ánh đúng thực tế.
+- Ưu tiên tạo chứng từ theo luồng liên kết (SI -> SQ -> SO -> Invoice) để giảm nhập liệu lại.
+- Trước khi chốt đơn hoặc phát hành hóa đơn, kiểm tra lại thông tin khách hàng, số lượng và điều khoản thanh toán.

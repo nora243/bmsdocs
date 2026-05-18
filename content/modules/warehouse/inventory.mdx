@@ -1,0 +1,99 @@
+---
+title: Tồn kho
+---
+
+# Tồn kho
+
+## Mục đích
+
+Trang Tồn kho là nơi bạn kiểm tra nhanh hàng còn bao nhiêu và có xuất được ngay hay không.
+
+## Vai trò trong quy trình
+
+- kiểm tra trước khi tạo phiếu xuất kho
+- kiểm tra sau khi hoàn thành phiếu nhập/phiếu xuất
+- theo dõi hàng sắp hết hoặc chênh lệch kiểm kê
+
+## Điều hướng
+
+1. Vào ERP.
+2. Chọn Kho.
+3. Chọn Tồn kho.
+
+## Các chỉ số và ý nghĩa
+
+| Trường | Ý nghĩa |
+|---|---|
+| Tồn kho | Số lượng đang có trong kho |
+| Chờ xuất | Số lượng đã được giữ chỗ để xuất |
+| Khả dụng | Số lượng còn có thể xuất ngay |
+| Đang về | Số lượng đang chờ nhập về kho |
+
+### Quy tắc tính
+
+- Khả dụng được hệ thống tự tính từ tồn kho và chờ xuất.
+- Bạn không nhập tay số khả dụng.
+
+## Bộ lọc và tra cứu
+
+Màn hình hỗ trợ các tác vụ nhanh sau:
+
+- Tìm theo tên hoặc SKU sản phẩm.
+- Lọc theo kho.
+- Vào chi tiết theo từng sản phẩm để xem tồn theo kho và lịch sử giao dịch.
+
+## Cách sử dụng nhanh
+
+1. Lọc theo kho hoặc tìm theo tên/SKU sản phẩm.
+2. Kiểm tra cột Tồn kho, Chờ xuất, Khả dụng.
+3. Nhấp vào sản phẩm để xem tồn theo kho và lịch sử giao dịch.
+4. Dùng Điều chỉnh tồn kho khi cần cập nhật chênh lệch kiểm kê.
+
+## Điều chỉnh tồn kho
+
+Điều chỉnh tồn kho dùng cho các trường hợp sai lệch không đi qua PNK/PXK chuẩn.
+
+Các lý do nghiệp vụ phổ biến:
+
+- Điều chỉnh tăng
+- Điều chỉnh giảm
+- Hư hỏng
+- Thất thoát
+- Tìm thấy hàng
+- Khác
+
+Khuyến nghị khi điều chỉnh:
+
+- Ghi rõ lý do và bối cảnh trong ghi chú.
+- Hạn chế điều chỉnh trực tiếp với số lượng lớn nếu chưa đối chiếu chứng từ.
+- Sau điều chỉnh, kiểm tra lại lịch sử giao dịch để xác minh tác động.
+
+## Các dấu hiệu cần xử lý sớm
+
+- Khả dụng thấp nhưng đơn xuất nhiều.
+- Chờ xuất tăng cao bất thường.
+- Đang về nhiều nhưng chưa hoàn thành nhập kho.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Dùng để |
+|---|---|
+| `inventory.read` | Xem màn hình tồn kho và tra cứu số liệu |
+| `inventory.adjust` | Tạo phiếu điều chỉnh tăng/giảm tồn kho |
+
+Gợi ý phân quyền:
+
+- Nhân viên kho: `inventory.read`
+- Quản lý kho/Admin: `inventory.read`, `inventory.adjust`
+
+## Lỗi thường gặp và cách xử lý
+
+- Không xuất được dù còn tồn: kiểm tra cột Khả dụng, không chỉ nhìn Tồn kho.
+- Số liệu hàng đang về không giảm: kiểm tra phiếu nhập đã hoàn thành chưa.
+- Chênh lệch tồn sau kiểm kê: tạo điều chỉnh tồn có lý do rõ ràng, tránh sửa chứng từ đã hoàn thành.
+
+## Gợi ý vận hành
+
+- Ưu tiên theo dõi cảnh báo sắp hết hàng để lập kế hoạch nhập.
+- Trước khi tạo phiếu xuất số lượng lớn, luôn kiểm tra cột Khả dụng.
+- Định kỳ đối chiếu tồn hệ thống và tồn thực tế để phát hiện sai lệch sớm.

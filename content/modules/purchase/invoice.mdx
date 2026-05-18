@@ -1,0 +1,122 @@
+---
+title: Hóa đơn mua
+---
+
+# Hóa đơn mua (PI)
+
+## Tổng quan
+
+Hóa đơn mua (Purchase Invoice — PI) ghi nhận nghĩa vụ thanh toán với nhà cung cấp sau khi hàng đã được nhận. Hóa đơn có thể được tạo độc lập hoặc liên kết với một hoặc nhiều Đơn đặt hàng (PO) đã hoàn thành.
+
+Mã định danh tự động theo format: **`PI-DDMMYY-XXXX`** (VD: `PI-170526-0001`).
+
+---
+
+## Trạng thái hóa đơn
+
+### Trạng thái xử lý
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Mới tạo, chưa phê duyệt — có thể chỉnh sửa |
+| **Đã duyệt** (APPROVED) | Đã được duyệt, đã ghi nhận công nợ phải trả (AP Ledger) |
+
+### Trạng thái thanh toán
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Chưa thanh toán** (UNPAID) | Chưa có thanh toán nào |
+| **Thanh toán một phần** (PARTIAL) | Đã thanh toán một phần |
+| **Đã thanh toán** (PAID) | Đã thanh toán đủ |
+
+---
+
+## Tạo hóa đơn
+
+### Từ các PO đã hoàn thành (khuyến nghị)
+
+1. Vào **Mua hàng → Hóa đơn mua**, nhấn **Tạo từ PO**.
+2. Chọn một hoặc nhiều PO cần lập hóa đơn. **Tất cả PO được chọn phải ở trạng thái COMPLETED.**
+3. Hệ thống tự tính tổng tiền từ các PO và lấy nhà cung cấp từ PO đầu tiên.
+4. Nhập thêm số hóa đơn, ngày hóa đơn, hạn thanh toán từ hóa đơn giấy của nhà cung cấp.
+5. Nhấn **Lưu**.
+
+### Tạo thủ công (không qua PO)
+
+1. Vào **Mua hàng → Hóa đơn mua**, nhấn **Tạo mới**.
+2. Điền đầy đủ thông tin bao gồm tổng tiền.
+3. Nhấn **Lưu**.
+
+---
+
+## Thông tin hóa đơn
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Nhà cung cấp | ✅ | Lấy tự động từ PO hoặc chọn thủ công |
+| Số hóa đơn | | Số hóa đơn trên chứng từ của nhà cung cấp |
+| Ký hiệu hóa đơn | | Ký hiệu/serial hóa đơn (VD: C23-AA/001) |
+| Ngày hóa đơn | | Ngày ghi trên hóa đơn (mặc định ngày hiện tại) |
+| Hạn thanh toán | | Ngày đến hạn phải thanh toán |
+| Đơn vị tiền tệ | | Mặc định VND |
+| Tỷ giá | | Tỷ giá quy đổi về VND (mặc định 1) |
+| Tạm tính | | Tổng giá trị trước chiết khấu/thuế |
+| Chiết khấu | | Số tiền chiết khấu |
+| Thuế | | Tổng thuế GTGT hoặc thuế khác |
+| **Tổng cộng** | ✅ | Số tiền phải thanh toán (> 0) |
+| Ghi chú | | Ghi chú nội bộ |
+| File đính kèm | | URL file hóa đơn gốc (scan PDF) |
+
+> Khi tạo từ PO: tổng tiền được tự tính bằng tổng `total_amount` của tất cả PO đã chọn.
+
+---
+
+## Phê duyệt hóa đơn
+
+Nhấn **Phê duyệt** trên hóa đơn ở trạng thái **Nháp**:
+- Trạng thái chuyển sang **Đã duyệt**.
+- Hệ thống tự ghi nhận vào **Sổ công nợ phải trả (AP Ledger)**.
+- Ghi lại người duyệt và thời điểm duyệt.
+
+> Chỉ hóa đơn ở trạng thái **Nháp** mới có thể phê duyệt.
+
+---
+
+## Thanh toán hóa đơn
+
+Sau khi phê duyệt, ghi nhận các đợt thanh toán bằng nút **Thêm thanh toán**:
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Số tiền | ✅ | Số tiền thanh toán đợt này (> 0) |
+| Ngày thanh toán | | Ngày thực hiện thanh toán |
+| Phương thức thanh toán | | Tiền mặt, chuyển khoản, v.v. |
+| Số tham chiếu | | Số lệnh chuyển khoản / chứng từ |
+| Tài khoản ngân hàng | | Tài khoản thực hiện thanh toán |
+| Ghi chú | | Ghi chú đợt thanh toán |
+
+Hệ thống tự động phân bổ thanh toán theo thứ tự FIFO qua các PO liên kết, sau đó phân bổ tiếp vào từng phiếu nhập kho (PNK). Trạng thái thanh toán của PO và PNK được cập nhật tự động.
+
+---
+
+## Chỉnh sửa và xóa
+
+- **Chỉnh sửa** chỉ được phép khi hóa đơn ở trạng thái **Nháp**. Các trường có thể chỉnh: số hóa đơn, ký hiệu, hạn thanh toán, ghi chú, file đính kèm, chiết khấu, thuế.
+- **Xóa:**
+  - Hóa đơn **Nháp + Chưa thanh toán**: bất kỳ ai có quyền xóa đều có thể xóa.
+  - Hóa đơn **Đã duyệt + Chưa thanh toán**: chỉ người có quyền **approve** mới xóa được.
+  - Hóa đơn đã có thanh toán (dù một phần): **không thể xóa**.
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_invoices: read` | Xem tất cả hóa đơn |
+| `purchase_invoices: read_own` | Chỉ xem hóa đơn do mình tạo |
+| `purchase_invoices: create` | Tạo hóa đơn mới |
+| `purchase_invoices: update` | Chỉnh sửa hóa đơn (chỉ DRAFT) |
+| `purchase_invoices: delete` | Xóa hóa đơn |
+| `purchase_invoices: approve` | Phê duyệt hóa đơn; cũng cho phép xóa hóa đơn đã duyệt nhưng chưa thanh toán |
+| `purchase_invoices: export` | Xuất danh sách ra Excel |

@@ -1,0 +1,43 @@
+---
+title: Hệ thống
+---
+
+# Module Hệ thống
+
+## Tổng quan
+
+Module Hệ thống dùng để quản trị truy cập và cấu trúc quyền trong doanh nghiệp.
+
+Mục tiêu chính:
+
+- quản lý tài khoản người dùng
+- tổ chức vai trò theo phòng ban/chức năng
+- kiểm soát quyền truy cập theo nguyên tắc đúng người đúng quyền
+
+## Vị trí trong vận hành
+
+```text
+Tạo người dùng -> Tạo vai trò -> Gán quyền cho vai trò -> Gán vai trò cho người dùng -> Kiểm tra truy cập thực tế
+```
+
+## Truy cập chức năng
+
+Vào ERP/CRM -> System.
+
+Menu thường dùng:
+
+- Users
+- Roles
+- Permissions
+
+## Danh mục trang hướng dẫn chi tiết
+
+- [Quản lý người dùng](./users)
+- [Quản lý vai trò](./roles)
+- [Quản lý quyền hạn](./permissions)
+
+## Nguyên tắc vận hành khuyến nghị
+
+- Không cấp quyền trực tiếp tràn lan cho từng người, ưu tiên cấp qua vai trò.
+- Tách vai trò vận hành và vai trò quản trị để hạn chế rủi ro.
+- Định kỳ rà soát tài khoản không còn sử dụng và quyền vượt nhu cầu.

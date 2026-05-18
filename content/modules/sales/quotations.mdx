@@ -1,0 +1,148 @@
+---
+title: Báo giá bán hàng (SQ)
+---
+
+# Báo giá bán hàng (SQ)
+
+## Tổng quan
+
+Báo giá bán hàng là chứng từ gửi khách để xác nhận giá bán, số lượng, điều kiện thanh toán và hiệu lực chào giá.
+
+Bạn có thể tạo báo giá:
+
+- trực tiếp từ màn hình Quotations
+- hoặc tạo từ Yêu cầu bán hàng (SI)
+
+## Vị trí trong quy trình
+
+```text
+Yêu cầu bán hàng (SI) -> Báo giá (SQ) -> Đơn hàng bán (SO)
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Sales -> Quotations.
+
+Bạn có thể:
+
+- tạo báo giá mới
+- chỉnh sửa báo giá
+- duyệt báo giá
+- cập nhật trạng thái theo phản hồi khách
+- tạo đơn hàng bán từ báo giá
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã SQ | Mã báo giá |
+| Mã SI | Yêu cầu bán hàng liên kết (nếu có) |
+| Khách hàng | Khách nhận báo giá |
+| Tổng tiền | Tổng giá trị báo giá |
+| Hiệu lực đến | Ngày hết hạn báo giá |
+| Hiệu chỉnh | Lần revision |
+| Trạng thái | Trạng thái báo giá |
+
+### Bộ lọc thường dùng
+
+- tìm theo mã báo giá
+- lọc theo trạng thái
+- lọc theo khách hàng
+- lọc theo nhân viên sales
+- lọc theo khoảng ngày
+
+## Tạo báo giá mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Khách hàng | ✅ | Bắt buộc |
+| Ngày báo giá | ✅ | Mặc định ngày hiện tại |
+| Hiệu lực đến | ✅ | Thời hạn chào giá |
+| Điều khoản thanh toán | | Theo chính sách bán hàng |
+| Tiền tệ/Tỷ giá | | Mặc định VND |
+| Điều khoản giao hàng | | Ghi rõ điều kiện giao nhận |
+
+### Dòng sản phẩm
+
+Mỗi báo giá cần ít nhất 1 sản phẩm.
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn từ danh mục |
+| Số lượng | ✅ | Lớn hơn 0 |
+| Đơn vị | | Theo quy đổi sản phẩm |
+| Đơn giá | ✅ | Giá bán |
+| Chiết khấu | | Theo dòng hàng |
+| Thuế | | Theo dòng hàng |
+
+### Các bước thao tác nhanh
+
+1. Nhấn Tạo Báo Giá.
+2. Chọn khách hàng, ngày hiệu lực, điều khoản chính.
+3. Thêm sản phẩm và giá bán.
+4. Kiểm tra tổng tiền.
+5. Lưu nháp.
+6. Duyệt báo giá để gửi khách.
+7. Khi khách đồng ý, tạo SO ngay từ báo giá.
+
+## Trạng thái báo giá
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| DRAFT | Nháp |
+| SENT | Đã duyệt/sẵn sàng gửi khách |
+| VIEWED | Khách đã xem |
+| ACCEPTED | Khách chấp nhận |
+| REJECTED | Khách từ chối |
+| EXPIRED | Hết hiệu lực |
+| CANCELLED | Hủy báo giá |
+
+## Hiệu chỉnh báo giá (Revision)
+
+Khi sửa các thông tin ảnh hưởng tới tiền (giá, số lượng, chiết khấu, thuế), báo giá sẽ quay về trạng thái nháp để duyệt lại.
+
+Khuyến nghị: luôn kiểm tra kỹ trước khi bấm duyệt lần cuối.
+
+## Trang chi tiết báo giá
+
+Trang chi tiết giúp bạn:
+
+- xem thông tin đầy đủ của báo giá
+- theo dõi trạng thái phản hồi khách
+- duyệt/cập nhật trạng thái
+- tạo SO từ báo giá
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| sales_quotations.read | Xem toàn bộ báo giá |
+| sales_quotations.read_own | Chỉ xem báo giá thuộc phạm vi của mình |
+| sales_quotations.create | Tạo báo giá |
+| sales_quotations.update | Sửa toàn bộ báo giá |
+| sales_quotations.update_own | Sửa báo giá thuộc phạm vi của mình |
+| sales_quotations.delete | Xóa toàn bộ báo giá |
+| sales_quotations.delete_own | Xóa báo giá thuộc phạm vi của mình |
+| sales_quotations.approve | Duyệt báo giá |
+
+Gợi ý phân quyền:
+
+- Nhân viên sales: read_own, create, update_own
+- Trưởng nhóm sales: thêm read, update, approve
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Báo giá không duyệt được: kiểm tra các trường bắt buộc và quyền duyệt.
+- Không tạo được SO từ báo giá: kiểm tra trạng thái báo giá đã phù hợp chưa.
+- Giá trị tổng không đúng kỳ vọng: kiểm tra lại chiết khấu và thuế ở từng dòng hàng.
+
+## Gợi ý vận hành
+
+- Nên tạo SQ từ SI khi cơ hội đến từ pipeline đang theo dõi.
+- Luôn đặt thời hạn hiệu lực rõ ràng để tránh báo giá hết hạn.
+- Khi khách chấp nhận, chuyển sang SO ngay để không mất cơ hội.

@@ -1,0 +1,40 @@
+---
+title: Tạo dịch vụ (Tenant)
+---
+
+# Tạo dịch vụ (Tenant)
+
+BMS hoạt động theo mô hình **multi-tenant** – mỗi doanh nghiệp là một dịch vụ (tenant) độc lập, có subdomain riêng và dữ liệu hoàn toàn tách biệt.
+
+Sau khi đăng nhập lần đầu, bạn sẽ thấy trang **Dịch vụ của tôi** còn trống. Hãy tạo dịch vụ đầu tiên để bắt đầu.
+
+## Tạo dịch vụ mới
+
+Nhấn **+ Tạo dịch vụ đầu tiên** (hoặc **+ Tạo dịch vụ mới** ở góc trên phải) để mở form tạo dịch vụ.
+
+Điền thông tin theo bảng sau:
+
+| Trường | Bắt buộc | Mô tả |
+|--------|----------|-------|
+| **Tên Công Ty** | ✓ | Tên đầy đủ của doanh nghiệp (ví dụ: `Ricco LTD`) |
+| **Mã Dịch Vụ** | ✓ | Chỉ chữ thường và số, không dấu, không khoảng trắng – dùng làm subdomain (ví dụ: `ricco` → `ricco.bms.im`) |
+| **Chu Kỳ Thanh Toán** | | Hàng tháng hoặc Hàng năm (tiết kiệm 20%) |
+| **Chọn Gói** | ✓ | Chọn gói phù hợp; người dùng mới có thể chọn **Dùng thử – 0 đ / tháng** |
+| **Thành phố** | | Thành phố đặt trụ sở |
+| **Số điện thoại** | | Số liên hệ của doanh nghiệp |
+| **Địa chỉ** | | Địa chỉ chi tiết |
+| **Mã số thuế** | | Mã số thuế doanh nghiệp (nếu có) |
+
+Sau khi điền xong, nhấn **Tạo Dịch Vụ**.
+
+> **Lưu ý về Mã Dịch Vụ:** Đây sẽ là subdomain để truy cập hệ thống (`<mã>.bms.im`). Chỉ được đặt một lần và **không thể thay đổi** sau khi tạo. Hãy chọn tên ngắn gọn, dễ nhớ.
+
+## Sau khi tạo thành công
+
+> **Thời gian khởi tạo:** Hệ thống cần **2–5 phút** để khởi tạo dịch vụ. Sau khi hoàn tất, bạn sẽ nhận được email gửi đến địa chỉ đã xác minh — email này chứa **thông tin tài khoản admin** để đăng nhập vào tenant.
+
+Dịch vụ sẽ xuất hiện trên trang **Dịch vụ của tôi** với trạng thái **Active**, hiển thị tên công ty, mã dịch vụ, gói đăng ký và thành phố.
+
+Nhấn vào card dịch vụ để xem chi tiết và quản lý gói cước.
+
+Bước tiếp theo: **[Gói dùng thử](/getting-started/trial)** – tìm hiểu thời hạn, cách truy cập và nâng cấp gói.

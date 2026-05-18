@@ -1,0 +1,59 @@
+---
+title: API Reference
+---
+
+# API Reference
+
+## Tổng quan
+
+BMS cung cấp REST API để tích hợp với hệ thống bên ngoài.
+
+- **Base URL:** `https://api.bms.im/api/v1`
+- **Xác thực:** JWT Bearer Token
+- **Multi-tenant:** Header `X-Tenant-ID` bắt buộc trên mọi request
+
+## Request Format
+
+```http
+GET /api/v1/purchase/orders
+Authorization: Bearer <access_token>
+X-Tenant-ID: your-tenant-id
+Content-Type: application/json
+```
+
+## Response Format
+
+Tất cả API đều trả về cùng cấu trúc:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "error": null,
+  "meta": {
+    "total": 100,
+    "page": 1,
+    "limit": 20
+  }
+}
+```
+
+## Mã lỗi HTTP
+
+| Code | Ý nghĩa |
+|------|---------|
+| `200` | Thành công |
+| `201` | Tạo mới thành công |
+| `400` | Request không hợp lệ |
+| `401` | Chưa xác thực |
+| `403` | Không có quyền |
+| `404` | Không tìm thấy |
+| `500` | Lỗi server |
+
+## Phân trang
+
+```
+GET /api/v1/purchase/orders?page=1&limit=20
+```
+
+Response sẽ có `meta.total`, `meta.page`, `meta.limit`.

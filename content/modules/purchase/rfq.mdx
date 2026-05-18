@@ -1,0 +1,119 @@
+---
+title: Đề nghị báo giá (RFQ)
+---
+
+# Đề nghị báo giá (RFQ)
+
+## Tổng quan
+
+Đề nghị báo giá (Request for Quotation — RFQ) là bước gửi yêu cầu báo giá đến một hoặc nhiều nhà cung cấp cho cùng một danh sách hàng hóa. Hệ thống tổng hợp phản hồi từ các nhà cung cấp dưới dạng **Báo giá (PQ)** để so sánh và chọn nhà cung cấp tốt nhất.
+
+Mã định danh tự động theo format: **`RFQ-DDMMYY-XXXX`** (VD: `RFQ-170526-0001`).
+
+## Vị trí trong quy trình
+
+```
+Đề xuất mua (PR) → Đề nghị báo giá (RFQ) → Báo giá (PQ) → Đơn đặt hàng (PO) → ...
+```
+
+> **💡 Lưu ý:** RFQ là bước tùy chọn. Doanh nghiệp có thể tạo thẳng PO nếu đã có thỏa thuận với nhà cung cấp.
+
+---
+
+## Trạng thái RFQ
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Vừa tạo, chưa gửi cho nhà cung cấp |
+| **Đã gửi** (SENT) | Đã gửi yêu cầu báo giá đến nhà cung cấp |
+| **Đang xét duyệt** (IN_REVIEW) | Đã nhận báo giá, đang đánh giá |
+| **Hoàn thành** (COMPLETED) | Đã chọn được nhà cung cấp, chuyển sang PO |
+| **Đã hủy** (CANCELLED) | Hủy yêu cầu báo giá |
+
+---
+
+## Tạo RFQ mới
+
+Vào **Mua hàng → Đề nghị báo giá**, nhấn **Thêm mới**.
+
+### Thông tin chung
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Tiêu đề | ✅ | Tên mô tả nội dung yêu cầu báo giá |
+| Đề xuất mua (PR) | | Liên kết với PR đã được duyệt (nếu có) |
+| Ngày phát hành | | Mặc định ngày hiện tại |
+| Hạn nộp báo giá | ✅ | Ngày cuối nhà cung cấp phải gửi báo giá về |
+| Thời hạn hiệu lực (ngày) | | Số ngày báo giá có hiệu lực (mặc định 30 ngày) |
+| Điều khoản thanh toán | | Hình thức thanh toán yêu cầu |
+| Điều kiện giao hàng | | Incoterms hoặc điều khoản giao nhận hàng |
+| Địa điểm giao hàng | | Địa chỉ nhận hàng |
+| Ngày giao hàng yêu cầu | | Hạn giao hàng mong muốn |
+| Ghi chú | | Yêu cầu đặc biệt gửi kèm nhà cung cấp |
+
+### Danh sách hàng hóa
+
+Thêm từng sản phẩm cần báo giá vào bảng hàng hóa:
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn sản phẩm từ danh mục |
+| Số lượng yêu cầu | ✅ | Số lượng cần mua |
+| Đơn vị tính | | Đơn vị đo lường |
+| Thông số kỹ thuật | | Mô tả chi tiết yêu cầu kỹ thuật |
+| Tiêu chuẩn chất lượng | | Tiêu chuẩn chất lượng yêu cầu |
+| Ghi chú dòng hàng | | Ghi chú riêng cho từng sản phẩm |
+
+> Có thể tìm kiếm sản phẩm theo tên hoặc mã SKU. Nếu RFQ được tạo từ PR, danh sách hàng sẽ được điền tự động từ PR.
+
+### Nhà cung cấp mời báo giá
+
+Chọn một hoặc nhiều nhà cung cấp sẽ nhận yêu cầu báo giá này. Cần chọn **ít nhất 1 nhà cung cấp**.
+
+---
+
+## Gửi RFQ cho nhà cung cấp
+
+Sau khi tạo xong, RFQ ở trạng thái **Nháp**. Nhấn **Gửi** để chuyển sang trạng thái **Đã gửi** và thông báo cho nhà cung cấp.
+
+> Sau khi gửi, nhà cung cấp sẽ lập **Báo giá (PQ)** phản hồi lại. Xem thêm tại [Báo giá (PQ)](/modules/purchase/quotation).
+
+---
+
+## Theo dõi và đánh giá báo giá
+
+Trong trang chi tiết RFQ, tab **Báo giá** hiển thị danh sách tất cả báo giá đã nhận từ các nhà cung cấp. Với mỗi báo giá có thể:
+
+- Xem chi tiết giá từng dòng hàng
+- Cho điểm đánh giá (0–100)
+- Ghi chú nhận xét
+- Đánh dấu báo giá được chọn (**Is Selected**)
+
+Sau khi chọn được báo giá tốt nhất, có thể **tạo PO trực tiếp** từ báo giá đó.
+
+---
+
+## Cập nhật trạng thái thủ công
+
+Ngoài luồng tự động, có thể cập nhật trạng thái RFQ thủ công qua menu thao tác:
+
+- **DRAFT → SENT**: Gửi cho nhà cung cấp
+- **SENT → IN_REVIEW**: Bắt đầu xem xét báo giá nhận được
+- **IN_REVIEW → COMPLETED**: Đã chọn xong nhà cung cấp
+- **Bất kỳ → CANCELLED**: Hủy yêu cầu
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_rfqs: read` | Xem tất cả RFQ |
+| `purchase_rfqs: read_own` | Chỉ xem RFQ do mình tạo |
+| `purchase_rfqs: create` | Tạo RFQ mới |
+| `purchase_rfqs: update` | Chỉnh sửa tất cả RFQ |
+| `purchase_rfqs: update_own` | Chỉnh sửa RFQ do mình tạo |
+| `purchase_rfqs: delete` | Xóa tất cả RFQ |
+| `purchase_rfqs: delete_own` | Xóa RFQ do mình tạo |
+| `purchase_rfqs: send` | Gửi RFQ cho nhà cung cấp |
+| `purchase_rfqs: send_own` | Gửi RFQ do mình tạo |

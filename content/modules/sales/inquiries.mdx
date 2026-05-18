@@ -1,0 +1,131 @@
+---
+title: Yêu cầu bán hàng (SI)
+---
+
+# Yêu cầu bán hàng (SI)
+
+## Tổng quan
+
+Yêu cầu bán hàng là điểm bắt đầu của quy trình bán hàng. Đây là nơi ghi nhận nhu cầu ban đầu của khách hàng và giao người phụ trách xử lý.
+
+Nên tạo SI khi:
+
+- mới tiếp cận khách hàng
+- chưa đủ dữ liệu để chốt báo giá ngay
+- cần theo dõi lịch sử làm việc theo từng cơ hội
+
+## Vị trí trong quy trình
+
+```text
+Yêu cầu bán hàng (SI) -> Báo giá (SQ) -> Đơn hàng (SO) -> Hóa đơn (SIV)
+```
+
+## Truy cập chức năng
+
+Vào ERP -> Sales -> Inquiries.
+
+Bạn có thể:
+
+- xem danh sách yêu cầu
+- tạo yêu cầu mới
+- chỉnh sửa thông tin yêu cầu
+- cập nhật trạng thái xử lý
+- tạo báo giá từ yêu cầu
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã YC | Mã yêu cầu bán hàng |
+| Báo giá | Báo giá đã tạo từ yêu cầu |
+| Khách hàng/Tiềm năng | Đối tượng đang chăm sóc |
+| Tiêu đề | Nội dung ngắn của nhu cầu |
+| Nguồn | Kênh phát sinh nhu cầu |
+| Phụ trách | Người xử lý chính |
+| Trạng thái | Tình trạng hiện tại |
+
+### Bộ lọc thường dùng
+
+- tìm theo mã yêu cầu hoặc tiêu đề
+- lọc theo khách hàng
+- lọc theo người phụ trách
+- lọc theo trạng thái
+- lọc theo nguồn
+- lọc theo khoảng ngày
+
+## Tạo yêu cầu mới
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Tiêu đề yêu cầu | ✅ | Mô tả ngắn nhu cầu |
+| Ngày yêu cầu | ✅ | Mặc định ngày hiện tại |
+| Nguồn | ✅ | Website, Email, Điện thoại, ... |
+| Người phụ trách | | Có thể giao một hoặc nhiều người |
+| Khách hàng hiện tại hoặc Prospect | ✅ | Chọn 1 trong 2 |
+| Mô tả chi tiết | | Ghi rõ yêu cầu để dễ theo dõi |
+
+### Các bước thao tác nhanh
+
+1. Nhấn Tạo Yêu Cầu.
+2. Chọn khách hàng hiện tại hoặc nhập thông tin khách hàng tiềm năng.
+3. Nhập tiêu đề, nguồn và người phụ trách.
+4. Lưu yêu cầu.
+5. Cập nhật trạng thái sau mỗi lần làm việc với khách.
+6. Tạo báo giá khi thông tin đã rõ.
+
+## Trạng thái xử lý
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| NEW | Mới tiếp nhận |
+| CONTACTED | Đã liên hệ khách hàng |
+| QUOTED | Đã tạo/gửi báo giá |
+| WON | Cơ hội thành công |
+| LOST | Cơ hội thất bại |
+| CANCELLED | Hủy theo quyết định nội bộ |
+
+## Trang chi tiết SI
+
+Trang chi tiết giúp bạn xem nhanh:
+
+- thông tin yêu cầu
+- thông tin khách hàng/prospect
+- danh sách báo giá liên kết
+
+Từ đây có thể tạo báo giá ngay để không phải nhập lại dữ liệu.
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| sales_inquiries.read | Xem toàn bộ SI |
+| sales_inquiries.read_own | Chỉ xem SI thuộc phạm vi của mình |
+| sales_inquiries.create | Tạo SI mới |
+| sales_inquiries.update | Sửa toàn bộ SI |
+| sales_inquiries.update_own | Sửa SI thuộc phạm vi của mình |
+| sales_inquiries.delete | Xóa toàn bộ SI |
+| sales_inquiries.delete_own | Xóa SI thuộc phạm vi của mình |
+| sales_inquiries.approve | Duyệt theo quy trình nội bộ |
+| sales_inquiries.manage | Quản lý phân công phụ trách |
+
+Gợi ý phân quyền:
+
+- Nhân viên sales: read_own, create, update_own
+- Trưởng nhóm sales: thêm read, update, manage
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không thấy dữ liệu mình đang xử lý: kiểm tra lại người phụ trách được gán trên SI.
+- Không đổi được trạng thái: kiểm tra quyền và trạng thái hiện tại.
+- Thiếu thông tin khi tạo báo giá: cập nhật đầy đủ khách hàng, sản phẩm và nhu cầu trong SI trước.
+
+## Gợi ý vận hành
+
+- Cập nhật trạng thái ngay sau mỗi lần làm việc với khách.
+- Dùng ghi chú ngắn gọn, dễ tra cứu.
+- Ưu tiên tạo báo giá trực tiếp từ SI để giữ liên kết dữ liệu.

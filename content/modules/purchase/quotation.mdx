@@ -1,0 +1,127 @@
+---
+title: Báo giá (PQ)
+---
+
+# Báo giá (PQ)
+
+## Tổng quan
+
+Báo giá (Supplier Quotation — PQ) là phản hồi của nhà cung cấp sau khi nhận được RFQ, bao gồm giá cả, điều khoản giao hàng và thanh toán cho từng sản phẩm. Hệ thống lưu báo giá của nhiều nhà cung cấp khác nhau để so sánh và chọn nhà cung cấp tốt nhất trước khi tạo PO.
+
+Mã định danh tự động theo format: **`PQ-DDMMYY-XXXX`** (VD: `PQ-170526-0001`).
+
+## Vị trí trong quy trình
+
+```
+Đề nghị báo giá (RFQ) → Báo giá (PQ) → Đơn đặt hàng (PO)
+```
+
+> **💡 Lưu ý:** Có thể tạo PQ độc lập không cần liên kết với RFQ, ví dụ khi nhà cung cấp chủ động gửi báo giá.
+
+---
+
+## Trạng thái PQ
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Mới nhập, chưa gửi/nộp — có thể chỉnh sửa và xóa |
+| **Đã nộp** (SUBMITTED) | Nhà cung cấp đã xác nhận báo giá, chờ đánh giá |
+| **Đã đánh giá** (EVALUATED) | Đã được chấm điểm và nhận xét |
+| **Được chọn** (SELECTED) | Báo giá này được chọn để tạo PO |
+
+---
+
+## Tạo báo giá mới
+
+Vào **Mua hàng → Báo giá**, nhấn **Thêm mới**. Hoặc từ trang chi tiết RFQ, chọn nhà cung cấp và nhấn **Thêm báo giá**.
+
+### Thông tin chung
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| RFQ | | Liên kết với đề nghị báo giá (nếu có) |
+| Nhà cung cấp | ✅ | Nhà cung cấp gửi báo giá |
+| Ngày báo giá | ✅ | Ngày lập báo giá |
+| Hiệu lực đến | | Ngày hết hạn hiệu lực báo giá |
+| Điều khoản thanh toán | | Hình thức thanh toán được đề xuất |
+| Điều kiện giao hàng | | Điều khoản giao nhận hàng |
+| Thời gian giao hàng (ngày) | | Số ngày giao hàng sau khi đặt |
+| Đơn vị tiền tệ | | Mặc định VND |
+| Phí vận chuyển | | Chi phí vận chuyển |
+| File đính kèm | | URL file báo giá gốc (PDF/Excel) |
+| Ghi chú | | Ghi chú bổ sung |
+
+### Danh sách hàng hóa báo giá
+
+Thêm ít nhất 1 sản phẩm. Nếu PQ liên kết với RFQ, các dòng hàng từ RFQ sẽ được điền sẵn.
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Chọn từ danh mục |
+| Tên sản phẩm theo NCC | | Tên sản phẩm mà nhà cung cấp sử dụng |
+| Thương hiệu | | Thương hiệu/nhà sản xuất |
+| Model | | Mã model cụ thể |
+| Xuất xứ | | Quốc gia sản xuất |
+| Số lượng | ✅ | Số lượng báo giá (> 0) |
+| Đơn vị tính | | Đơn vị đo lường |
+| Đơn giá | ✅ | Giá trên một đơn vị (> 0) |
+| Chiết khấu (%) | | Tỷ lệ chiết khấu theo dòng |
+| Chiết khấu (tiền) | | Số tiền chiết khấu cố định |
+| Thuế (%) | | Thuế GTGT hoặc thuế khác |
+| Thông số kỹ thuật | | Mô tả kỹ thuật của sản phẩm báo giá |
+| Bảo hành (tháng) | | Thời gian bảo hành |
+| Lead time (ngày) | | Thời gian giao hàng cho dòng này |
+| Ghi chú | | Ghi chú riêng cho dòng hàng |
+
+> Hệ thống tự tính: **Thành tiền = (Số lượng × Đơn giá − Chiết khấu) + Thuế**  
+> **Tổng báo giá = Tổng thành tiền + Phí vận chuyển**
+
+---
+
+## Quy trình xử lý báo giá
+
+### 1. Nộp báo giá (Submit)
+
+Sau khi nhập xong, nhấn **Nộp báo giá** để chuyển từ **Nháp** sang **Đã nộp**. Chỉ PQ ở trạng thái Nháp mới có thể chỉnh sửa và nộp.
+
+### 2. Đánh giá báo giá (Evaluate)
+
+Người phụ trách mua hàng đánh giá báo giá sau khi PQ chuyển sang trạng thái **Đã nộp**:
+
+| Trường đánh giá | Mô tả |
+|---|---|
+| Điểm đánh giá | Điểm từ 0 đến 100 |
+| Nhận xét đánh giá | Ghi chú về điểm mạnh/yếu |
+| Chọn báo giá này | Đánh dấu nếu quyết định chọn NCC này |
+
+> Không thể đánh giá PQ đang ở trạng thái **Nháp** — phải nộp trước.
+
+### 3. Chọn báo giá (Select)
+
+Sau khi đánh giá tất cả báo giá, nhấn **Chọn** trên báo giá tốt nhất. Hệ thống sẽ:
+- Đánh dấu PQ này là **Được chọn**
+- Tự động bỏ chọn các PQ khác trong cùng RFQ
+
+Từ PQ được chọn, nhấn **Tạo PO** để chuyển sang đơn đặt hàng. Thông tin nhà cung cấp, hàng hóa, giá cả sẽ được điền tự động vào PO.
+
+---
+
+## Lưu ý khi chỉnh sửa
+
+- Chỉ PQ ở trạng thái **Nháp** mới có thể chỉnh sửa hoặc xóa.
+- Khi liên kết với RFQ, mỗi cặp (RFQ + Nhà cung cấp) chỉ được có **1 báo giá**.
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_quotations: read` | Xem tất cả báo giá |
+| `purchase_quotations: read_own` | Chỉ xem báo giá do mình tạo |
+| `purchase_quotations: create` | Tạo báo giá mới |
+| `purchase_quotations: update` | Chỉnh sửa tất cả báo giá |
+| `purchase_quotations: update_own` | Chỉnh sửa báo giá do mình tạo |
+| `purchase_quotations: delete` | Xóa tất cả báo giá (chỉ DRAFT) |
+| `purchase_quotations: delete_own` | Xóa báo giá do mình tạo (chỉ DRAFT) |
+| `purchase_quotations: evaluate` | Đánh giá và chọn báo giá |

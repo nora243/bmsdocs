@@ -1,0 +1,138 @@
+---
+title: Tăng ca
+---
+
+# Tăng ca
+
+## Tổng quan
+
+Trang này hướng dẫn quy trình đăng ký và duyệt tăng ca.
+
+Mục tiêu:
+
+- ghi nhận giờ tăng ca đúng người, đúng thời gian
+- áp dụng hệ số OT chính xác theo loại ngày
+- đồng bộ dữ liệu OT vào bảng lương nhanh và minh bạch
+
+## Vị trí trong quy trình
+
+```text
+Nhân viên tạo đơn OT -> Quản lý duyệt/từ chối -> Chốt OT -> Đồng bộ vào kỳ lương
+```
+
+## Truy cập chức năng
+
+Vào Staff -> Attendance -> Overtime Requests.
+
+Bạn có thể:
+
+- xem danh sách đơn tăng ca
+- lọc theo nhân viên, trạng thái
+- tạo đơn tăng ca mới
+- duyệt hoặc từ chối đơn (nếu có quyền)
+- xóa đơn (nếu có quyền)
+
+## Danh sách và bộ lọc
+
+### Cột chính
+
+| Cột | Ý nghĩa |
+|---|---|
+| Mã đơn | Mã yêu cầu tăng ca |
+| Nhân viên | Người tăng ca |
+| Ngày OT | Ngày làm thêm |
+| Bắt đầu / Kết thúc | Mốc thời gian làm thêm |
+| Giờ OT | Tổng giờ dự kiến |
+| Loại OT | weekday / weekend / holiday |
+| Lý do | Lý do tăng ca |
+| Trạng thái | pending, approved, rejected, cancelled, completed |
+
+### Bộ lọc thường dùng
+
+- tab All: xem toàn bộ theo quyền
+- tab Pending: tập trung đơn chờ duyệt
+- lọc theo nhân viên
+- lọc theo trạng thái (ở tab All)
+
+## Tạo đơn tăng ca
+
+### Thông tin cần nhập
+
+| Trường | Bắt buộc | Ghi chú |
+|---|---|---|
+| Nhân viên | ✅ | Chọn người tăng ca |
+| Ngày OT | ✅ | Ngày phát sinh tăng ca |
+| Giờ bắt đầu | ✅ | Chọn ngày giờ bắt đầu |
+| Giờ kết thúc | ✅ | Chọn ngày giờ kết thúc |
+| Giờ OT dự kiến | Tự tính | Hệ thống tự tính từ giờ bắt đầu/kết thúc |
+| Loại OT | ✅ | Ngày thường / cuối tuần / lễ |
+| Hệ số OT | Tự điền | Tự theo loại OT |
+| Lý do | ✅ | Bắt buộc nhập |
+| Mô tả công việc | | Nội dung công việc đã làm |
+
+### Hệ số OT mặc định
+
+| Loại OT | Hệ số |
+|---|---|
+| weekday | x1.5 |
+| weekend | x2 |
+| holiday | x3 |
+
+## Các bước thao tác nhanh
+
+1. Vào Overtime Requests và bấm Thêm đơn OT.
+2. Chọn nhân viên và ngày OT.
+3. Chọn giờ bắt đầu và kết thúc.
+4. Chọn loại OT để hệ thống tự áp hệ số.
+5. Nhập lý do và mô tả công việc.
+6. Gửi đơn.
+
+## Duyệt / Từ chối / Xóa
+
+### Duyệt hoặc từ chối (quản lý/HR)
+
+- Duyệt: chuyển trạng thái sang approved.
+- Từ chối: chuyển trạng thái sang rejected và ghi rõ lý do.
+
+### Xóa đơn
+
+- thao tác bởi người có quyền xóa
+- nên chỉ xóa khi đơn sai thông tin hoặc không còn hiệu lực
+
+## Trạng thái đơn OT
+
+| Trạng thái | Ý nghĩa |
+|---|---|
+| pending | Chờ duyệt |
+| approved | Đã duyệt |
+| rejected | Bị từ chối |
+| cancelled | Đã hủy |
+| completed | Đã hoàn tất xử lý |
+
+## Phân quyền (cho Admin)
+
+| Quyền | Mô tả |
+|---|---|
+| hr_overtime.read | Xem danh sách và chi tiết đơn OT |
+| hr_overtime.create | Tạo đơn OT |
+| hr_overtime.approve | Duyệt/từ chối đơn OT |
+| hr_overtime.delete | Xóa đơn OT |
+
+Gợi ý phân quyền:
+
+- Nhân viên phụ trách chấm công: read, create
+- Trưởng nhóm/HR: thêm approve
+- Admin: đầy đủ quyền
+
+## Lỗi thường gặp và cách xử lý
+
+- Không tạo được đơn: kiểm tra đã nhập đủ nhân viên, thời gian, loại OT và lý do.
+- Giờ OT bằng 0: kiểm tra giờ kết thúc phải lớn hơn giờ bắt đầu.
+- Không duyệt được đơn: kiểm tra quyền duyệt và trạng thái hiện tại.
+- Dữ liệu OT chưa lên lương: kiểm tra kỳ lương đã chạy bước đồng bộ công/OT chưa.
+
+## Gợi ý vận hành
+
+- Nên duyệt đơn OT trong ngày hoặc cuối tuần để tránh tồn đọng.
+- Với OT ngày lễ/cuối tuần, cần kiểm tra đúng loại OT để tránh sai hệ số.
+- Trước khi chốt lương, nên rà lại các đơn pending và rejected để tránh thiếu dữ liệu.

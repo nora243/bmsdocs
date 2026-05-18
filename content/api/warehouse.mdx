@@ -1,0 +1,37 @@
+---
+title: API Kho
+---
+
+# API Kho
+
+## Tồn kho
+
+### Xem tồn kho
+
+```http
+GET /api/v1/warehouse/inventory?warehouse_id=1&product_id=1
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "product_id": 1,
+      "product_name": "Sản phẩm A",
+      "warehouse_id": 1,
+      "warehouse_name": "Kho chính",
+      "quantity_on_hand": 500,
+      "quantity_reserved": 50,
+      "quantity_available": 450
+    }
+  ]
+}
+```
+
+## Danh sách kho
+
+```http
+GET /api/v1/warehouse/warehouses
+```

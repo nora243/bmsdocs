@@ -1,0 +1,139 @@
+---
+title: Trả hàng mua
+---
+
+# Trả hàng mua (PRT)
+
+## Tổng quan
+
+Phiếu trả hàng mua (Purchase Return — PRT) ghi nhận việc trả lại hàng hóa cho nhà cung cấp do hàng kém chất lượng, giao sai, thừa số lượng hoặc hết hạn. Khi được phê duyệt, hệ thống tự tạo **Phiếu xuất kho (PXK)** loại *Trả hàng NCC* để trừ tồn kho.
+
+Mã định danh tự động theo format: **`PRT-DDMMYY-XXXX`** (VD: `PRT-170526-0001`).
+
+---
+
+## Điều kiện tạo phiếu trả hàng
+
+- Phải liên kết với một **PO đã có hàng nhận** (`quantity_received > 0`).
+- Tổng số lượng trả (qua tất cả phiếu trả chưa hủy) không được vượt quá tổng số lượng đã nhận của PO.
+
+---
+
+## Trạng thái phiếu trả hàng
+
+| Trạng thái | Mô tả |
+|---|---|
+| **Nháp** (DRAFT) | Mới tạo — có thể chỉnh sửa và xóa |
+| **Chờ duyệt** (PENDING) | Đã nộp lên quản lý — vẫn có thể chỉnh sửa và xóa |
+| **Đã duyệt** (APPROVED) | Đã duyệt, hệ thống tự tạo PXK trả hàng NCC |
+| **Hoàn thành** (COMPLETED) | PXK đã hoàn tất, kho đã xuất hàng; hệ thống tự tạo Debit Note |
+| **Đã hủy** (CANCELLED) | Phiếu bị hủy; có thể duyệt lại để mở phiếu |
+
+### Luồng chuyển trạng thái
+
+```
+DRAFT → PENDING → APPROVED → COMPLETED
+   ↓        ↓         ↓
+CANCELLED  CANCELLED  CANCELLED (nếu PXK chưa hoàn thành)
+```
+
+> Khi hủy phiếu ở trạng thái **APPROVED**: hệ thống sẽ hủy PXK liên kết nếu PXK đang ở DRAFT/PENDING/APPROVED. **Không thể hủy nếu PXK đã COMPLETED** (hàng đã xuất kho).
+
+---
+
+## Tạo phiếu trả hàng
+
+1. Vào **Mua hàng → Trả hàng**, nhấn **Tạo mới**.
+2. Chọn **PO** cần trả hàng (bắt buộc).
+3. Chọn phiếu nhập kho (PNK) liên quan nếu có.
+4. Điền thông tin chung và danh sách hàng hóa cần trả.
+5. Nhấn **Lưu**.
+
+---
+
+## Thông tin phiếu trả hàng
+
+### Thông tin chung
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Đơn đặt hàng (PO) | ✅ | PO chứa hàng cần trả |
+| Phiếu nhập kho (PNK) | | Phiếu nhập kho gốc liên quan |
+| Nhà cung cấp | ✅ | Nhà cung cấp nhận lại hàng |
+| Kho | ✅ | Kho xuất trả hàng |
+| Ngày trả hàng | | Ngày lập phiếu (mặc định hôm nay) |
+| Ngày dự kiến lấy hàng | | Ngày nhà cung cấp đến lấy hoặc ngày gửi hàng |
+| Phương thức trả hàng | | `SELF_DELIVERY` (tự giao, mặc định) / `CARRIER` (đơn vị vận chuyển) / `SUPPLIER_PICKUP` (NCC đến lấy) |
+| Số tiền hoàn lại | | Tổng tiền đề nghị hoàn; nếu để trống hệ thống tự tính = Tổng − Chiết khấu + Thuế |
+| Ghi chú | | Ghi chú gửi nhà cung cấp |
+| Ghi chú nội bộ | | Không in ra phiếu |
+
+### Danh sách hàng hóa trả
+
+| Trường | Bắt buộc | Mô tả |
+|---|---|---|
+| Sản phẩm | ✅ | Sản phẩm cần trả |
+| Dòng PO | | Liên kết dòng hàng trong PO — hệ thống tự kế thừa giá/chiết khấu/thuế |
+| Dòng PNK | | Liên kết dòng hàng trong phiếu nhập kho |
+| Lô hàng | | Batch/lô nếu theo dõi lô |
+| Số lượng | ✅ | Số lượng trả (> 0) |
+| Đơn vị tính | | Đơn vị đo lường |
+| Đơn giá | ✅ | Giá trị trên một đơn vị (≥ 0); kế thừa từ PO nếu chọn dòng PO |
+| Chiết khấu (%) | | Kế thừa từ PO nếu chọn dòng PO |
+| Thuế (%) | | Kế thừa từ PO nếu chọn dòng PO |
+| **Lý do trả hàng** | ✅ | Xem bảng lý do bên dưới |
+| Chi tiết lý do | | Mô tả cụ thể hơn |
+| Ghi chú | | Ghi chú dòng hàng |
+
+### Lý do trả hàng
+
+| Mã | Mô tả |
+|---|---|
+| `DEFECTIVE` | Hàng lỗi / hỏng hóc |
+| `WRONG_ITEM` | Giao nhầm mặt hàng |
+| `OVER_DELIVERED` | Giao thừa số lượng |
+| `EXPIRED` | Hàng hết hạn sử dụng |
+| `QUALITY_ISSUE` | Không đạt tiêu chuẩn chất lượng |
+| `OTHER` | Lý do khác |
+
+---
+
+## Quy trình xử lý
+
+### 1. Nộp phiếu (Submit)
+Nhấn **Nộp** trên phiếu ở trạng thái **Nháp** → chuyển sang **Chờ duyệt**.
+
+### 2. Phê duyệt
+Nhấn **Phê duyệt** — có thể duyệt từ trạng thái **Nháp**, **Chờ duyệt**, hoặc **Đã hủy** (tái phê duyệt):
+- Phiếu chuyển sang **Đã duyệt**.
+- Hệ thống tự tạo **Phiếu xuất kho (PXK)** loại *Trả hàng NCC* chứa đúng danh sách sản phẩm.
+- Nếu tái duyệt sau khi hủy: PXK cũ được kích hoạt lại (hoặc tạo mới nếu không còn PXK cũ).
+
+### 3. Hoàn thành
+Sau khi kho thực hiện xuất hàng và cập nhật PXK thành **Hoàn thành**, nhấn **Hoàn thành** trên phiếu trả hàng:
+- Phiếu chuyển sang **Hoàn thành**.
+- Hệ thống tự tạo **Debit Note (DN)** ở trạng thái Nháp để điều chỉnh công nợ.
+
+> **Điều kiện:** PXK liên kết phải ở trạng thái **COMPLETED** trước khi có thể hoàn thành phiếu trả hàng.
+
+---
+
+## Chỉnh sửa và xóa
+
+- **Chỉnh sửa**: chỉ được khi phiếu ở **Nháp** hoặc **Chờ duyệt**. Không thể đổi PO sau khi tạo.
+- **Xóa**: chỉ được khi phiếu ở **Nháp** hoặc **Chờ duyệt**.
+
+---
+
+## Phân quyền
+
+| Quyền | Mô tả |
+|---|---|
+| `purchase_returns: read` | Xem tất cả phiếu trả hàng |
+| `purchase_returns: read_own` | Chỉ xem phiếu do mình tạo |
+| `purchase_returns: create` | Tạo phiếu trả hàng mới |
+| `purchase_returns: update` | Chỉnh sửa phiếu (DRAFT/PENDING) |
+| `purchase_returns: update_own` | Chỉnh sửa phiếu do mình tạo |
+| `purchase_returns: delete` | Xóa phiếu (DRAFT/PENDING) |
+| `purchase_returns: delete_own` | Xóa phiếu do mình tạo |
+| `purchase_returns: approve` | Phê duyệt và hoàn thành phiếu trả hàng |

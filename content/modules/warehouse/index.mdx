@@ -1,0 +1,64 @@
+---
+title: Kho
+---
+
+# Module Kho
+
+## Tổng quan
+
+Module Kho giúp bạn quản lý hàng hóa từ lúc hàng vào kho đến lúc xuất kho giao đi.
+
+Mục tiêu chính là:
+
+- biết chính xác còn bao nhiêu hàng
+- hạn chế xuất nhầm hoặc thiếu hàng
+- theo dõi rõ từng chứng từ nhập/xuất
+
+## Mục tiêu quản lý
+
+- kiểm soát tồn kho theo từng kho và từng sản phẩm
+- theo dõi tiến độ xử lý phiếu nhập, phiếu xuất
+- hỗ trợ mua hàng và bán hàng làm việc thống nhất trên cùng dữ liệu
+
+## Phạm vi nghiệp vụ
+
+Module Kho bao gồm 3 nhóm nghiệp vụ chính:
+
+1. Tồn kho: theo dõi số lượng hiện có và hàng có thể xuất.
+2. Phiếu nhập kho (PNK): ghi nhận hàng đi vào kho.
+3. Phiếu xuất kho (PXK): ghi nhận hàng đi ra khỏi kho.
+
+## Điều hướng nhanh
+
+- Tồn kho: ERP -> Kho -> Tồn kho.
+- Phiếu nhập kho: ERP -> Kho -> Phiếu nhập.
+- Phiếu xuất kho: ERP -> Kho -> Phiếu xuất.
+
+## Luồng làm việc cơ bản
+
+```text
+Kiểm tra tồn kho -> Tạo phiếu nhập hoặc phiếu xuất -> Duyệt phiếu -> Hoàn thành phiếu -> Kiểm tra lại tồn kho
+```
+
+Nguyên tắc dễ nhớ:
+
+- Phiếu nhập hoàn thành thì tồn tăng.
+- Phiếu xuất hoàn thành thì tồn giảm.
+
+## Trang chi tiết
+
+- [Hướng dẫn chi tiết Tồn kho](./inventory)
+- [Hướng dẫn chi tiết Phiếu nhập kho (PNK)](./goods-receipt)
+- [Hướng dẫn chi tiết Phiếu xuất kho (PXK)](./goods-issue)
+
+## Quy tắc áp dụng chung
+
+- Chỉ hoàn thành phiếu khi đã có nhập/xuất thực tế.
+- Không sửa phiếu đã hoàn thành để tránh lệch số liệu.
+- Nếu có chênh lệch tồn, dùng chức năng điều chỉnh và ghi rõ lý do.
+
+## Khuyến nghị vận hành
+
+- Trước khi xuất kho số lượng lớn, luôn kiểm tra lại tồn khả dụng.
+- Cuối ngày, nên kiểm tra các phiếu đang chờ duyệt/chờ hoàn thành để tránh tồn ảo.
+- Định kỳ đối chiếu tồn hệ thống với tồn thực tế tại kho.
