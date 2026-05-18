@@ -1,29 +1,15 @@
-# Stage 1: Install dependencies
-FROM node:20-slim AS deps
-WORKDIR /app
-COPY package.json package-lock.json* ./
-COPY patches ./patches
-RUN npm ci
+# Build is done outside Docker (npm run build)
+# This Dockerfile only packages the pre-built artifacts
 
-# Stage 2: Build
-FROM node:20-slim AS builder
-WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED=1
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
-
-# Stage 3: Production image
-FROM node:20-slim AS runner
+FROM node:24-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --chown=nextjs:nodejs .next/standalone ./
+COPY --chown=nextjs:nodejs .next/static ./.next/static
 
 USER nextjs
 EXPOSE 3000
