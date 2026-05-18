@@ -5,7 +5,7 @@
     "dev": "next dev --webpack -p 3002",
     "build": "next build",
     "start": "next start",
-    "postinstall": "patch -p1 -d node_modules/nextra-theme-docs < patches/nextra-theme-docs.patch || true"
+    "postinstall": "patch -p1 < patches/nextra-theme-docs.patch || true"
   },
   "dependencies": {
     "next": "^16.2.6",
