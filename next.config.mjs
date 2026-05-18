@@ -4,4 +4,6 @@ const withNextra = nextra({
   search: true,
 })
 
-export default withNextra({})
+export default withNextra({
+  output: 'standalone',
+})
